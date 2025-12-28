@@ -1,4 +1,3 @@
-# src/uznlp/models/evaluation.py
 from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -11,7 +10,7 @@ class ModelEvaluator:
         self.labels = labels
 
     def get_metrics(self):
-        """Returns a dictionary of core metrics."""
+        """Asosiy koʻrsatkichlar lugʻatini qaytaradi."""
         return {
             'accuracy': accuracy_score(self.y_true, self.y_pred),
             'report': classification_report(self.y_true, self.y_pred, target_names=self.labels, output_dict=True)

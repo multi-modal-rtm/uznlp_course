@@ -1,4 +1,3 @@
-# src/uznlp/models/baselines.py
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import Pipeline
@@ -8,8 +7,8 @@ from typing import Literal
 
 class TextClassifier:
     """
-    A wrapper for classical ML models. 
-    Designed to be compatible with our future Deep Learning classes.
+    Klassik ML modellari uchun. 
+    Kelajakdagi Deep Learning darslarimiz bilan mos ravishda ishlab chiqilgan.
     """
     def __init__(self, model_type: Literal['nb', 'logreg'] = 'logreg'):
         self.model_type = model_type

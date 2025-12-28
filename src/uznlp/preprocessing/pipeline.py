@@ -2,14 +2,13 @@ import re
 from typing import List
 from .normalizer import UzbekNormalizer
 from .stemmer import UzbekStemmer
-from .stemmer_lib import UzbekStemmerLib
+from .stemmer_lib import UzbekStemmerLib 
 
 class TextPreprocessor:
     def __init__(self, stopwords: List[str]):
         self.normalizer = UzbekNormalizer()
-        
-        # Use the library-based stemmer now
-        self.stemmer = UzbekStemmerLib() 
+
+        self.stemmer = UzbekStemmerLib()
         
         self.stopwords = set(stopwords)
 
@@ -20,16 +19,14 @@ class TextPreprocessor:
         # 2. Tokenize
         tokens = clean_text.split()
         
-        # 3. Stopword Removal & Stemming
+        # 3. Stopword Removal & Lemmatization
         processed_tokens = []
         for t in tokens:
-            # Check for numbers or words > 1 char
+            # Raqamlar va 1 harfdan uzun so'zlarni saqlash
             is_number = t.replace("'", "").isdigit()
             if t not in self.stopwords and (len(t) > 1 or is_number):
-                
-                # Apply Library Stemming
-                lemmatized_t = self.stemmer.lemmatize(t)
-                processed_tokens.append(lemmatized_t)
+                lemma_t = self.stemmer.lemmatize(t)
+                processed_tokens.append(lemma_t)
         
         if return_tokens:
             return processed_tokens

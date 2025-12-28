@@ -28,13 +28,13 @@ class UzbekNormalizer:
 
     def normalize_apostrophes(self, text: str) -> str:
         """
-        Unifies various apostrophe characters to a single standard ASCII apostrophe.
-        Critical for words like O'zbekiston, g'oz, a'lo.
+        Turli apostrof belgilarni bitta standart ASCII apostrofiga birlashtiradi.
+        O‘zbekiston, g‘oz, a’lo kabi so‘zlarga tanqidiy.
         """
         return re.sub(r"[‘`’]", "'", text)
 
     def to_latin(self, text: str) -> str:
-        """Converts Cyrillic input to Latin based on standard Uzbek transliteration."""
+        """Standart oʻzbek transliteratsiyasi asosida kirill yozuvini lotinga oʻzgartiradi."""
         result = []
         for char in text:
             lower_char = char.lower()

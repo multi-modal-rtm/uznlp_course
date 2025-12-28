@@ -1,23 +1,29 @@
+# E'tibor bering biz bu moduldan darslar davomida foydalanmaymiz. 
+# Biz \uznlp\preprocessing\stemmer_lib.py dan foydalanamiz. 
+# Bu modulning maqsadi stemming qanday amalga oshirilishini ko'rsatish. 
+# Stemming va lemmatizatsiyatning o'zbek tili uchun implementatsiyasini 
+# https://github.com/UlugbekSalaev/UzMorphAnalyser orqali ko'rishingiz mumkin.
+
 import re
 
 class UzbekStemmer:
     def __init__(self):
-        # Order matters! Longer suffixes should be removed first.
+        # So'z tarkibida navbat muhim! Avval uzunroq qo'shimchalarni olib tashlash kerak.
         self.suffixes = [
-            # Possessive (Egalik)
+            # Egalik
             "imiz", "ingiz", "lari", "miz", "ngiz", 
-            # Plural (Ko'plik)
+            # Ko'plik
             "lar", 
-            # Case (Kelishik)
+            # Kelishik
             "ning", "ni", "ga", "da", "dan", 
-            # Derivational (Yasovchi - optional, usually risky to remove)
+            # Yasovchi
             "lik", "siz", "gi"
         ]
 
     def stem(self, word):
         """
-        Iteratively removes suffixes from the end of the word.
-        Simple rule-based approach for agglutinative Uzbek.
+        Takroriy ravishda so‘z oxiridagi qo‘shimchalarni olib tashlaydi.
+        Agglyutinativ o‘zbek tili uchun oddiy qoidaga asoslangan yondashuv.
         """
         # We repeat the process because multiple suffixes can exist (e.g., maktab-lar-da)
         original_word = word

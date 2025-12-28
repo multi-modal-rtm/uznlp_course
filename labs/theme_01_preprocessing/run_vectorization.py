@@ -1,51 +1,53 @@
 import sys
 import os
 import pandas as pd
+import joblib 
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 
-# --- FIX: ROBUST PATH SETUP ---
-# We use __file__ to get the location of THIS script, then go up 2 levels
 current_dir = os.path.dirname(os.path.abspath(__file__))
 project_root = os.path.abspath(os.path.join(current_dir, '../../'))
-
 if project_root not in sys.path:
     sys.path.append(project_root)
 
-# Load processed data
 input_path = os.path.join(project_root, 'data/processed/cleaned_news.csv')
+features_path = os.path.join(project_root, 'data/processed/features')
+models_path = os.path.join(project_root, 'models')
 
-print(f"📂 Looking for data at: {input_path}")
+os.makedirs(features_path, exist_ok=True)
+os.makedirs(models_path, exist_ok=True)
 
 if not os.path.exists(input_path):
-    print("❌ Error: File not found.")
-    print("Please run 'python labs/theme_01_preprocessing/run_pipeline.py' first!")
+    print(f"Error: {input_path} not found. Run pipeline first.")
     sys.exit(1)
 
 df = pd.read_csv(input_path)
-# Handle potential NaNs by filling with empty string
 corpus = df['clean_text'].fillna("").tolist()
+print(f"Loaded {len(corpus)} documents.")
 
-print(f"✅ Loaded {len(corpus)} documents.")
-
-# --- 1. Bag of Words (CountVectorizer) ---
-print("\n--- 📊 Bag of Words (Frequency Count) ---")
-# min_df=2: Ignore words appearing in only 1 document (likely typos or rare names)
-count_vec = CountVectorizer(min_df=2, max_features=20) 
+# 1. BAG OF WORDS (BoW)
+print("\n--- 1. Generating Bag of Words ---")
+count_vec = CountVectorizer(min_df=2, max_features=1000) # Limit to top 1000 words
 bow_matrix = count_vec.fit_transform(corpus)
 
-print("Top 20 Frequent Words:", count_vec.get_feature_names_out())
-print("Matrix Shape:", bow_matrix.shape)
+# Save the Model
+joblib.dump(count_vec, os.path.join(models_path, 'bow_vectorizer.pkl'))
 
-# --- 2. TF-IDF (Importance Score) ---
-print("\n--- ⚖️ TF-IDF (Importance Weighted) ---")
-tfidf_vec = TfidfVectorizer(min_df=2, max_features=20)
+# Save the Data
+bow_df = pd.DataFrame(bow_matrix.toarray(), columns=count_vec.get_feature_names_out())
+bow_df.to_csv(os.path.join(features_path, 'bow_features.csv'), index=False)
+print(f"Saved BoW model and features (Shape: {bow_matrix.shape})")
+
+# 2. TF-IDF
+print("\n--- 2. Generating TF-IDF ---")
+tfidf_vec = TfidfVectorizer(min_df=2, max_features=1000)
 tfidf_matrix = tfidf_vec.fit_transform(corpus)
 
-print("Top 20 Important Words:", tfidf_vec.get_feature_names_out())
-print("First Doc Vector (Dense):\n", tfidf_matrix[0].toarray())
+# Save the Model
+joblib.dump(tfidf_vec, os.path.join(models_path, 'tfidf_vectorizer.pkl'))
 
-print("\nTheme 1 Complete! Text is now mathematical vectors.")
+# Save the Data
+tfidf_df = pd.DataFrame(tfidf_matrix.toarray(), columns=tfidf_vec.get_feature_names_out())
+tfidf_df.to_csv(os.path.join(features_path, 'tfidf_features.csv'), index=False)
+print(f"Saved TF-IDF model and features (Shape: {tfidf_matrix.shape})")
 
-# Save for Theme 2
-# import joblib
-# joblib.dump(tfidf_vec, 'models/tfidf_vectorizer.pkl')
+print(f"\nOutputs saved to:\n - {features_path}\n - {models_path}")

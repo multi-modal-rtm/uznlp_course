@@ -6,10 +6,9 @@ class UzbekStemmerLib:
 
     def stem(self, word):
         """
-        Uses the robust UzMorphAnalyser to get the stem.
+        "stem"ni olish uchun UzMorphAnalyserdan foydalanadi. 
         """
         try:
-            # The library might return None or raise an error for unknown characters
             result = self.analyzer.stem(word)
             return result if result else word
         except:
@@ -17,9 +16,9 @@ class UzbekStemmerLib:
 
     def lemmatize(self, word):
         """
-        Returns the dictionary form (Lemma).
-        Example: "maktablarimizda" -> "maktab"
-        Example: "boraman" -> "bor" (Stem) vs "bormoq" (Lemma)
+        Lug'at shaklini qaytaradi (Lemma).
+        Misol: "maktablarimizda" -> "maktab"
+        Misol: "boraman" -> "bor" (Stem) va "bormoq" (Lemma)
         """
         try:
             result = self.analyzer.lemmatize(word)
