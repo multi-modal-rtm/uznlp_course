@@ -1,0 +1,9 @@
+data:
+  raw_path: "data/raw/uzbek_news.csv"         # Input file
+  processed_path: "data/processed/cleaned_news.csv" # Output file
+  stopwords_path: "data/stopwords.txt"
+
+processing:
+  target_script: "latin" # Options: latin, cyrillic
+  min_token_length: 2
+  max_features: 5000 # For TF-IDF
