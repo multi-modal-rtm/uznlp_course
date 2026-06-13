@@ -1,0 +1,57 @@
+# ── SECRETS & CREDENTIALS ─────────────────────────────────────────────────────
+kaggle.json
+.env
+*.token
+.netrc
+
+# HuggingFace token caches
+.cache/huggingface/
+*.hf_cache/
+
+# ── PYTHON ────────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.venv/
+venv/
+env/
+
+# ── JUPYTER ───────────────────────────────────────────────────────────────────
+.ipynb_checkpoints/
+
+# ── LARGE DATA (live in Kaggle Datasets — see .claude/skills/kaggle-hardware) ─
+corpus/raw/
+corpus/clean/
+datasets/
+*.bin
+*.kv
+*.safetensors
+*.pkl
+*.pt
+*.ckpt
+
+# ── LATEX BUILD ARTIFACTS ─────────────────────────────────────────────────────
+*.aux
+*.log
+*.nav
+*.snm
+*.toc
+*.out
+*.vrb
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+*.bbl
+*.blg
+
+# ── OS CRUFT ──────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+*~
+
+# ── ONE-OFF HELPER SCRIPTS ────────────────────────────────────────────────────
+fix_lstlisting_chars.py
