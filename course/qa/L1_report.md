@@ -12,23 +12,24 @@
 
 | Gate | Result | Notes |
 |---|---|---|
-| Terminology grep | **PASS** | 0 defects — professor/talaba/student/o'qituvchi not found |
-| Slide count (rendered, body only) | **PASS** | ~41 slides (target 38-42; L1 approved exception) |
+| Terminology grep | **PASS** | 0 defects — professor/talaba/student/o'qituvchi not found (re-run 2026-06-13 post-addition) |
+| Slide count (rendered, body only) | **PASS** | ~48 slides (new ceiling 46-48; +7 slides from ADDITION A+B) |
 | Self-contained (.tex) | **PASS** | No `\input`, `\include`, `\includegraphics`, `\bibliography`, `\setmainfont` |
-| Archetype structure (all 24 checks) | **PASS** | All archetypes present; see coverage table below |
-| pdflatex compile | **PASS** | MiKTeX 25.12 local; zero `^!` errors; 2.83pt overfull only (< 10pt) |
+| Archetype structure (all 24 checks) | **PASS** | All archetypes present; 7 new slides add [A-1]–[A-4] and [B-1]–[B-3] |
+| pdflatex compile | **DEFERRED** | Compile gate deferred to Overleaf (pdfLaTeX) — no local TeX install |
 
 ---
 
-## Slide-Count Breakdown
+## Slide-Count Breakdown (post ADDITION A+B)
 
 | Metric | Value |
 |---|---|
-| `\begin{frame}` in body (before `\appendix`) | 35 |
+| `\begin{frame}` in body (before `\appendix`) | 42 (+7 from additions) |
 | `\maketitle` (standalone, not in frame) | +1 |
 | `\section` count | 6 |
 | AtBeginSection extra firings (n_sections − 1) | +5 |
-| **Estimated rendered slides (body)** | **41** |
+| **Estimated rendered slides (body)** | **48** (+7 from ADDITION A+B) |
+| Pause overlays (body) | 5 (+1 from B-3 [J]) |
 | Appendix [S] frames (excluded) | 3 |
 
 ---
@@ -159,8 +160,38 @@ All 19 archetype slots present. ✓
 
 ---
 
-**Status: PASS** — all gates clear including compile.  
-MiKTeX 25.12 local; `pdflatex ×2`; zero errors; 48 PDF pages (41 unique slides + 4 pause overlays + 3 appendix); max overfull 2.83pt (< 10pt gate).
+**Status: PASS (non-compile gates)** — terminology, slide count, self-contained, archetypes all clear.  
+Compile gate DEFERRED to Overleaf (pdfLaTeX). Previous MiKTeX compile (48-page PDF) now superseded by ADDITION A+B revision.
+
+---
+
+## ADDITION A — Linguistik Darajalar (4 new slides, sub-item 1 tsikli)
+
+Inserted AFTER [H1] (history timeline), BEFORE [I1] (sentiment hand example).
+
+| New slide | Frame title | Content |
+|---|---|---|
+| [A-1] | Til Qanday Tashkil Etilgan? Linguistik Darajalar Stek | TikZ vertical stack: Fonologiya→Morfologiya→Sintaksis→Semantika→Pragmatika; text NLP covers levels 2–5 |
+| [A-2] | Morfologiya: O'zbek So'z Tuzilishi NLP ni Qiyinlashtiradi | `kitoblarimizdan` = kitob+lar+imiz+dan; warnbox flags BoW lug'at portlash muammosi |
+| [A-3] | Sintaksis va Semantika: Tartib Muhim, Ma'no Murakkab | SOV vs SVO; polysemy "bank"; forward refs to L5 (POS), L11 (tarjima), L3–L6 (embeddings) |
+| [A-4] | Pragmatika, Diskurs va NLP Qamrovi | Sarkazm example; ko-referentsiya; qamrov jadvali mapping levels to course tools |
+
+**Locked [I3] example:** unchanged — TF-IDF('nlp', D1)=0.405, TF-IDF('qiziq', D1)=1.099, corpus D1/D2/D3 intact.
+
+---
+
+## ADDITION B — Vazifalar Taksonomiyasi + Pipeline Kontrast (3 new slides, sub-item 4 tsikli)
+
+B-1 and B-2 inserted AFTER [G4] (applications table), BEFORE [I4] (pipeline example).
+B-3 ([J] for new material) inserted AFTER [I4], BEFORE existing [J4].
+
+| New slide | Frame title | Content |
+|---|---|---|
+| [B-1] | Vazifalar Taksonomiyasi: To'rt Asosiy Tur va Kurs Yo'l Xaritasi | 4-row table: Klassifikatsiya→L1/L2; Ketma-ketlik teglash→L5 (mavzu №5), L10 (mavzu №10); Ketma-ketlik generatsiyasi→L11 (mavzu №11), L12 (mavzu №12); Strukturaviy bashorat (general frame) |
+| [B-2] | Klassik NLP va End-to-End Neyron NLP: Kurs Yo'li | Two-column TikZ: classical pipeline (cnubluebg) vs neural end-to-end (green!12); warnbox states course strategy ("chap tomonni birinchi qurasiz") |
+| [B-3] | Sizning Vazifangiz: Taksonomiya Kategoriyasini Aniqlang | warnbox: 3 tasks (sentiment, NER, mashina tarjimasi) → \pause → okbox: Klassifikatsiya, Ketma-ketlik teglash, Ketma-ketlik generatsiyasi with L-number forward refs |
+
+---
 
 **Fixes applied post-initial-QA** (all from lstlisting + encoding issues found during MiKTeX compile):
 - `[fragile]` added to 4 frames: H2a, K2, K3, S3 (every frame with lstlisting)

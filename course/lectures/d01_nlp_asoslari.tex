@@ -6,7 +6,9 @@
 %              (d01_nlp_asoslari.tex)
 % Arxetiplar: [A][B][C][D][E] + 4 tsikl [F][G][H][I][J][K][L] +
 %             [M][N][O][P][Q][R] + ilova [S]
-% Rendered slayd soni: ~41  (L1 uchun ruxsat etilgan istisno: 38-42)
+% Rendered slayd soni: ~48  (L1 uchun ruxsat etilgan istisno: 46-48)
+% ADDITION A (4 slayd): linguistik darajalar stek — sub-item 1 tsikli, [H1] dan keyin
+% ADDITION B (3 slayd): vazifalar taksonomiyasi + klassik-vs-e2e + [J] — sub-item 4 tsikli
 % ================================================================
 
 % ================================================================
@@ -393,6 +395,169 @@
         Barcha usullar --- qoidadan
         LLM gacha --- shu muammoni
         turli yo'llar bilan hal qiladi.
+      \end{tcolorbox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ================================================================
+% ADDITION A — LINGUISTIK DARAJALAR (4 slayd, sub-item 1 tsikli)
+%              Joylashuv: [H1] tarixdan keyin, [I1] sentiment misol oldin.
+% ================================================================
+
+% [A-1] OVERVIEW: LINGUISTIK DARAJALAR STEK
+\begin{frame}{Til Qanday Tashkil Etilgan? Linguistik Darajalar Stek}
+  \begin{tcolorbox}[defbox,title=Ta'rif: Tilning besh darajasi (linguistic levels)]
+    \small
+    Lingvistika tilni \textbf{besh darajada} o'rganadi ---
+    NLP har birini turli vositalar bilan qayta ishlaydi.
+  \end{tcolorbox}
+  \vspace{4pt}
+  \begin{center}
+  \begin{tikzpicture}[
+      lvl/.style={draw, fill=cnubluebg, rounded corners=3pt,
+                  minimum width=9.5cm, minimum height=0.62cm,
+                  font=\small, align=center},
+      top/.style={draw, fill=green!12, rounded corners=3pt,
+                  minimum width=9.5cm, minimum height=0.62cm,
+                  font=\small\bfseries, align=center}
+  ]
+    \node[top] (p)  {5.~Pragmatika / Diskurs \;---\; kontekstdagi ma'no; gaplararo aloqa};
+    \node[lvl, below=2mm of p]  (s)  {4.~Semantika \;---\; so'z ma'nosi va ko'p ma'nolilik};
+    \node[lvl, below=2mm of s]  (sy) {3.~Sintaksis \;---\; gap tuzilishi (SOV / SVO)};
+    \node[lvl, below=2mm of sy] (m)  {2.~Morfologiya \;---\; so'z tuzilishi
+          (\textit{kitob+lar+imiz+dan})};
+    \node[lvl, below=2mm of m]  (ph)
+          {\textcolor{halfgray}{1.~Fonologiya \;---\; tovush tizimi
+          (matnli NLP uchun ko'rinmas)}};
+  \end{tikzpicture}
+  \end{center}
+  \vspace{3pt}
+  \footnotesize
+  Matnli NLP \textbf{2--5-darajalarda} ishlaydi.
+  Nutq (speech) NLP 1-darajani ham qamrab oladi --- bu kursda ko'rib chiqilmaydi.
+\end{frame}
+
+% [A-2] MORFOLOGIYA
+\begin{frame}{Morfologiya: O'zbek So'z Tuzilishi NLP ni Qiyinlashtiradi}
+  \begin{tcolorbox}[defbox,title=Ta'rif: Morfologiya (so'z tuzilishi)]
+    \small
+    \textbf{Agglutinativ til}: bitta so'zga bir nechta qo'shimcha yopishadi.
+    O'zbek --- agglutinativ;
+    ingliz --- izolyativga yaqin (qo'shimchalar kam).
+  \end{tcolorbox}
+  \vspace{3pt}
+  \begin{columns}[T]
+    \begin{column}{0.50\textwidth}
+      \textbf{``kitoblarimizdan'' tahlili:}\\[4pt]
+      \small
+      \begin{tabular}{ll}
+        \toprule
+        Morfema & Ma'nosi \\
+        \midrule
+        kitob   & ildiz (ot) \\
+        +lar    & ko'plik \\
+        +imiz   & I shaxs, ko'plik egalik \\
+        +dan    & chiqish kelishigi \\
+        \midrule
+        \multicolumn{2}{l}{\footnotesize inglizcha: ``from our books'' (3 so'z!)} \\
+        \bottomrule
+      \end{tabular}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \begin{tcolorbox}[warnbox,title=BoW va TF-IDF muammosi,top=2pt,bottom=2pt]
+        \footnotesize
+        BoW har shakl = \textbf{alohida token}:\\[3pt]
+        \texttt{"kitob"} $\ne$ \texttt{"kitoblar"}\\
+        $\ne$ \texttt{"kitoblarimizdan"}\\[3pt]
+        $\Rightarrow$ lug'at ($|V|$) portlashi\\
+        $\Rightarrow$ siyrak matritsa ($\uparrow$)\\[4pt]
+        \textbf{Yechim}: stemming ---\\
+        bugungi 2-tsikl, m01.
+      \end{tcolorbox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% [A-3] SINTAKSIS VA SEMANTIKA
+\begin{frame}{Sintaksis va Semantika: Tartib Muhim, Ma'no Murakkab}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \textbf{Sintaksis} (gap tuzilishi):\\[3pt]
+      \begin{tcolorbox}[defbox,title=SOV vs SVO,top=2pt,bottom=2pt]
+        \footnotesize
+        O'zbek: \textbf{S--O--V}\\
+        \textit{``Men kitob o'qiyman.''}\\[3pt]
+        Ingliz: \textbf{S--V--O}\\
+        \textit{``I read a book.''}\\[3pt]
+        So'z tartibi tarjima modeli (L11)
+        uchun hal qiluvchi ahamiyatga ega.
+      \end{tcolorbox}
+      \vspace{3pt}
+      \footnotesize
+      POS teglash (L5) so'z turkumini\\
+      gap tartibiga asoslab aniqlaydi.
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \textbf{Semantika} (ma'no):\\[3pt]
+      \begin{tcolorbox}[defbox,title=Ko'p ma'nolilik (polysemy),top=2pt,bottom=2pt]
+        \footnotesize
+        ``\textbf{bank}'' ---\\
+        \quad daryo qirg'og'i? \textbf{yoki}\\
+        \quad moliya muassasasi?\\[3pt]
+        TF-IDF bu farqni \alert{bilmaydi} ---\\
+        kontekstsiz son.\\[3pt]
+        \textcolor{deepgreen}{\textbf{Yechim}}: Word2Vec, GloVe\\
+        (2-hafta, L3--L6).
+      \end{tcolorbox}
+    \end{column}
+  \end{columns}
+  \vspace{4pt}
+  \begin{tcolorbox}[okbox,title=Kurs manzarasi,top=2pt,bottom=2pt]
+    \footnotesize
+    \textbf{Bugun}: morfologiya $\to$ preprocessing + vektorizatsiya. \quad
+    \textbf{2-hafta}: semantika $\to$ embeddinglar (L3--L6). \quad
+    \textbf{3-hafta}: sintaksis $\to$ ketma-ketlik modellari (L5, L11).
+  \end{tcolorbox}
+\end{frame}
+
+% [A-4] PRAGMATIKA, DISKURS VA NLP QAMROVI
+\begin{frame}{Pragmatika, Diskurs va NLP Qamrovi}
+  \begin{columns}[T]
+    \begin{column}{0.50\textwidth}
+      \textbf{Pragmatika} (kontekstdagi ma'no):\\[3pt]
+      \small
+      \textit{``Ha, zo'r mahsulot\ldots{} 3 kun kechikib keldi.''}\\
+      \footnotesize$\to$ \alert{kinoyaviy salbiy} (sarkazm)\\[4pt]
+      TF-IDF ``zo'r'' da \textbf{musbat} ko'radi ---
+      kontekstni bilmaydi.\\
+      BERT va LLM kontekstni hisobga oladi (L13--L16).\\[5pt]
+      \textbf{Diskurs} (gaplararo aloqa):\\[3pt]
+      \small
+      \textit{``Alisher keldi. \underline{U} kitob olib keldi.''}\\
+      \footnotesize``U'' $\to$ ``Alisher'' --- ko-referentsiya.\\
+      Xulosalash modeli (L12) buni hal qiladi.
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \textbf{NLP qamrovi xaritasi:}\\[4pt]
+      \footnotesize
+      \begin{tabular}{p{1.8cm}p{3.0cm}}
+        \toprule
+        Daraja & Bu kursdagi qurol \\
+        \midrule
+        Fonologiya  & \textcolor{halfgray}{Speech --- tashqarida} \\
+        Morfologiya & Preprocessing, m01 \\
+        Sintaksis   & POS, parse (L5--L6) \\
+        Semantika   & Embedding (L3--L6) \\
+        Pragmatika  & BERT, LLM (L13+) \\
+        \bottomrule
+      \end{tabular}
+      \vspace{4pt}
+      \begin{tcolorbox}[okbox,title=Xulosa,top=2pt,bottom=2pt]
+        \footnotesize
+        Bu kurs barcha 4 matnli\\
+        NLP darajasini qamrab oladi:\\
+        morfologiyadan pragmatikagacha.
       \end{tcolorbox}
     \end{column}
   \end{columns}
@@ -1097,6 +1262,98 @@ idx = vec.vocabulary_
   \end{tcolorbox}
 \end{frame}
 
+% ================================================================
+% ADDITION B — NLP TASHKIL ETILISHI (3 slayd, sub-item 4 tsikli)
+%              Joylashuv: [G4] dan keyin, [I4] pipeline misol oldin.
+% ================================================================
+
+% [B-1] VAZIFALAR TAKSONOMIYASI
+\begin{frame}{Vazifalar Taksonomiyasi: To'rt Asosiy Tur va Kurs Yo'l Xaritasi}
+  \small
+  \begin{tabular}{p{3.0cm}p{2.7cm}p{5.3cm}}
+    \toprule
+    \textbf{Tur} & \textbf{Chiqarma} & \textbf{Misollar va ma'ruza} \\
+    \midrule
+    \textbf{Klassifikatsiya} &
+      1 label / matn &
+      Sentiment tahlil (bugun, L1); mavzu, spam (L2) \\[4pt]
+    \textbf{Ketma-ketlik teglash} &
+      Label / token &
+      POS teglash (L5, mavzu \textnumero{}5);
+      NER (L10, mavzu \textnumero{}10) \\[4pt]
+    \textbf{Ketma-ketlik generatsiyasi} &
+      Yangi matn &
+      Tarjima uz$\to$en (L11, mavzu \textnumero{}11);
+      xulosalash (L12, mavzu \textnumero{}12) \\[4pt]
+    \textbf{Strukturaviy bashorat} &
+      Munosabatlar &
+      Uch turning umumiy matematik doirasi;
+      chiqarma tuzilishiga ega (skalyar emas) \\
+    \bottomrule
+  \end{tabular}
+  \vspace{5pt}
+  \begin{tcolorbox}[okbox,title=Muhim nuqta,top=2pt,bottom=2pt]
+    \footnotesize
+    Klassifikatsiya: \texttt{sigmoid}/\texttt{softmax} bitta chiqarma.
+    Teglash: token-darajasida Bi-LSTM / CRF.
+    Generatsiya: dekoder bilan Seq2Seq yoki Transformer.
+  \end{tcolorbox}
+\end{frame}
+
+% [B-2] KLASSIK NLP VS END-TO-END NEYRON NLP
+\begin{frame}{Klassik NLP va End-to-End Neyron NLP: Kurs Yo'li}
+  \begin{columns}[T]
+    \begin{column}{0.46\textwidth}
+      \textbf{Klassik pipeline} (1-hafta, P1--P4):
+      \begin{center}
+      \begin{tikzpicture}[
+          box/.style={draw, fill=cnubluebg, rounded corners=3pt,
+                      minimum width=2.8cm, minimum height=0.58cm,
+                      font=\scriptsize, align=center},
+          arr/.style={-{Stealth}, thick, color=cnublue}
+      ]
+        \node[box] (tok)  {Tokenizatsiya\\+ Stemming};
+        \node[box, below=2mm of tok]  (feat) {TF-IDF / BoW};
+        \node[box, below=2mm of feat] (clf)  {LR / NB modeli};
+        \draw[arr] (tok)--(feat);
+        \draw[arr] (feat)--(clf);
+      \end{tikzpicture}
+      \end{center}
+      \footnotesize
+      Har bosqich \textbf{alohida} tuzilgan,\\
+      sozlanadi va tekshiriladi.
+    \end{column}
+    \begin{column}{0.50\textwidth}
+      \textbf{End-to-end neyron NLP} (2--4-hafta):
+      \begin{center}
+      \begin{tikzpicture}[
+          fin/.style={draw, fill=green!12, rounded corners=3pt,
+                      minimum width=3.8cm, minimum height=0.58cm,
+                      font=\scriptsize\bfseries, align=center},
+          arr/.style={-{Stealth}, thick, color=cnublue}
+      ]
+        \node[fin] (inp) {Xom matn (tokens)};
+        \node[fin, below=2mm of inp] (emb) {Embedding qatlami};
+        \node[fin, below=2mm of emb] (enc) {Encoder (Transformer)};
+        \node[fin, below=2mm of enc] (out) {Chiqarma (label / matn)};
+        \draw[arr] (inp)--(emb);
+        \draw[arr] (emb)--(enc);
+        \draw[arr] (enc)--(out);
+      \end{tikzpicture}
+      \end{center}
+      \footnotesize
+      Bitta model --- \textbf{hammasi birgalikda} o'rganiladi.
+    \end{column}
+  \end{columns}
+  \vspace{4pt}
+  \begin{tcolorbox}[warnbox,title=Kurs strategiyasi,top=2pt,bottom=2pt]
+    \footnotesize
+    \textbf{Chap tomonni birinchi qurasiz} (P1--P4), keyin bosqichma-bosqich
+    neyron komponentlarga almashtiramiz (P5--P15).
+    Pipeline tushunchasi neyron yo'lni o'rganishni osonlashtiradi.
+  \end{tcolorbox}
+\end{frame}
+
 % ----------------------------------------------------------------
 % [I4] TO'LIQ PIPELINE: SHARHDAN SENTIMENT BALLGACHA
 % ----------------------------------------------------------------
@@ -1145,6 +1402,38 @@ idx = vec.vocabulary_
       \end{tcolorbox}
     \end{column}
   \end{columns}
+\end{frame}
+
+% [B-3] SIZNING VAZIFANGIZ: TAKSONOMIYANI ANIQLANG (ADDITION B [J])
+\begin{frame}{Sizning Vazifangiz: Taksonomiya Kategoriyasini Aniqlang}
+  \begin{tcolorbox}[warnbox,title=Savol --- 90 soniya]
+    \small
+    Quyidagi uch vazifa qaysi taksonomiya turiga tegishli?\\[5pt]
+    \begin{enumerate}\setlength\itemsep{4pt}
+      \item \textbf{Sentiment tahlil}:
+            sharh $\to$ \{musbat \,/\, salbiy\}
+      \item \textbf{NER}:
+            ``Abdulloh Toshkentda ishlaydi'' $\to$
+            [Abdulloh:\,SHAXS] [Toshkent:\,JOY]
+      \item \textbf{Mashina tarjimasi}:
+            o'zbek matni $\to$ inglizcha matn
+    \end{enumerate}
+  \end{tcolorbox}
+  \pause
+  \begin{tcolorbox}[okbox,title=Javob]
+    \small
+    \begin{enumerate}\setlength\itemsep{3pt}
+      \item \textbf{Klassifikatsiya} ---
+            bir label butun matn uchun
+            (L1 bugun; L2 da kengaytiriladi)
+      \item \textbf{Ketma-ketlik teglash} ---
+            har token alohida label oladi
+            (NER: mavzu \textnumero{}10, L10)
+      \item \textbf{Ketma-ketlik generatsiyasi} ---
+            yangi matn chiqaradi
+            (Tarjima: mavzu \textnumero{}11, L11)
+    \end{enumerate}
+  \end{tcolorbox}
 \end{frame}
 
 % ----------------------------------------------------------------
