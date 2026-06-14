@@ -59,7 +59,7 @@ TextPreprocessor → SpellLSHRetriever (imlo + qidiruv)
 ```
 capstone/
 ├── SPEC.md           ← shu fayl (loyiha shartnomasi)
-├── contracts.py      ← barcha modullar uchun imzolar (type hints + docstring)
+├── contracts.py      ← barcha modullar uchun shablonlar (type hints + docstring)
 ├── app.py            ← FastAPI serveri (M4 milestone da yaratiladi)
 └── modules/
     ├── m01_text_preprocessor.py
@@ -100,7 +100,7 @@ capstone/
 
 ## Qoidalar
 
-1. Har bir modul `contracts.py` dagi imzoga mos kelishi shart.
+1. Har bir modul `contracts.py` dagi shablonga mos kelishi shart.
 2. `preprocess()` va boshqa asosiy funksiyalar xatoni `ValueError` / `TypeError`
    orqali aniq xabar bilan qaytarishi kerak.
 3. Barcha modellar `save(path)` va `load(path)` metodlariga ega bo'lishi shart
@@ -112,4 +112,4 @@ capstone/
 ---
 
 *Ushbu hujjat `course/course_map.yaml` dan avtomatik tarzda keltirib chiqarilgan.
-Modul imzolarini `capstone/contracts.py` faylida ko'ring.*
+Modul shablonlarini `capstone/contracts.py` faylida ko'ring.*
