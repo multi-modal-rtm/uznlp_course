@@ -105,7 +105,7 @@
 % QO'SHIMCHALAR  (asl fayldan o'zgarishsiz)
 % ================================================================
 \AtBeginSection[]{%
-  \begin{frame}{Qayerdamiz?}
+  \begin{frame}{Prezentatsiya rejasi}
     \tableofcontents[currentsection]
   \end{frame}}
 
@@ -115,11 +115,11 @@
 % ================================================================
 % METAMA'LUMOT
 % ================================================================
-\title[NLP Asoslari]{NLP Asoslari va Matnni Qayta Ishlash}
+\title[NLP asoslari]{NLP asoslari va matnni qayta ishlash}
 \subtitle{Tabiiy tilni qayta ishlash --- 1-ma'ruza}
 \author[A.A.\,Abdulali]{A.A.\,Abdulali}
 \date{15-iyun 2026}
-\institute{11:00--12:20 \quad$\cdot$\quad VMQ 425-son, mavzu \textnumero{}1}
+\institute{11:00--12:20 \quad$\cdot$\quad mavzu \textnumero{}1}
 
 % ================================================================
 \begin{document}
@@ -131,36 +131,36 @@
 \maketitle
 
 % ================================================================
-\section[Kirish]{Kirish: NLP Nima Uchun?}
+\section[Kirish]{Kursga kirish}
 % ================================================================
 
 % ----------------------------------------------------------------
 % [B] KURS THROUGH-LINE HOOK  (qayta nazorat o'rniga --- birinchi ma'ruza)
 % ----------------------------------------------------------------
-\begin{frame}{16 Kunda Siz Ishlaydigan NLP Tizimi Qurasiz}
+\begin{frame}{Siz 16 kun davomida ishlaydigan NLP tizimi qurasiz}
   \begin{columns}[T]
     \begin{column}{0.52\textwidth}
-      \textbf{Kapstone loyihasi} --- har dars bir modul:\\[4pt]
+      \textbf{Quyidagi loyihalar bilan ishlaysiz} --- bunda har dars bir modul hisoblanadi:\\[4pt]
       \small
       \begin{itemize}\setlength\itemsep{3pt}
-        \item[\textbullet] \textbf{Bugun} (L1 + P1): matn tozalash, BoW, TF-IDF\\
+        \item[\textbullet] \textbf{Bugungi darsda} (L1 + P1): matnni tozalash, BoW, TF-IDF\\
               \texttt{\footnotesize m01\_text\_preprocessor.py}
-        \item[\textbullet] \textbf{1-hafta}: klassik tasniflash, vektorlar, qidiruv
+        \item[\textbullet] \textbf{1-hafta}: klassik tasniflash, vektorlashtirish usullari, qidiruv
         \item[\textbullet] \textbf{2-hafta}: Word2Vec, N-gram, RNN, LSTM
         \item[\textbullet] \textbf{3-hafta}: Transformer, NER, Seq2Seq tarjima
         \item[\textbullet] \textbf{4-hafta}: BERT fine-tuning, RAG, agent, deploy
       \end{itemize}
     \end{column}
     \begin{column}{0.44\textwidth}
-      \begin{tcolorbox}[okbox,title=Yakuniy mahsulot]
-        \small\textbf{O'zbek Hujjat Yordamchisi}\\[3pt]
+      \begin{tcolorbox}[okbox,title=Yakuniy hosil bo'ladigan mahsulot]
+        \small\textbf{O'zbek hujjat yordamchisi}\\[3pt]
         \footnotesize
         Savol $\to$ qidiruv $\to$ kontekst $\to$ javob\\[2pt]
         Sharh $\to$ sentiment tahlil\\[2pt]
         Hujjat $\to$ xulosa chiqarish
       \end{tcolorbox}
       \vspace{4pt}
-      \begin{tcolorbox}[warnbox,title=Bugungi ulush]
+      \begin{tcolorbox}[warnbox,title=Bugungi darsning umumiy hissasi]
         \footnotesize
         \texttt{preprocess(text)} funksiyasi ---
         barcha keyingi 14 modul shu funksiyaga
@@ -173,25 +173,21 @@
 % ----------------------------------------------------------------
 % [C] O'QUV MAQSADLARI
 % ----------------------------------------------------------------
-\begin{frame}{Bugungi Dars Oxirida Siz Nima Qila Olasiz?}
+\begin{frame}{Siz bugungi dars oxirida quyidagilarni bajara olasiz:}
   \begin{enumerate}\setlength\itemsep{8pt}
-    \item \textbf{Keltirib chiqara olasiz:}
-          NLP ning asosiy vazifalari va ilovalari taksonomiyasini
-          (tasniflash, teglash, generatsiya, qidiruv).
-    \item \textbf{Amalga oshira olasiz:}
-          tokenizatsiya, normalizatsiya, stopword filtrlash, stemming ---
-          o'zbek apostrofining Unicode muammosini hisobga olib.
-    \item \textbf{Hisoblay olasiz:}
-          kichik 3-hujjatli korpus uchun BoW matritsasi va TF-IDF
-          qiymatlarini qo'lda.
-    \item \textbf{Kodda bog'lay olasiz:}
+    \item \textbf{NLP ning asosiy vazifalari va ilovalari taksonomiyasini keltirib chiqara olasiz:}
+        (tasniflash, teglash, generatsiya, qidiruv).
+    \item \textbf{Tokenizatsiya, normalizatsiya, stopword filtrlash, o'zbek apostrofining Unicode muammosini hisobga olib stemming ni amalga oshira olasiz:}
+    \item \textbf{Kichik korpus uchun BoW matritsasi va TF-IDF
+          qiymatlarini qo'lda hisoblay olasiz}
+    \item \textbf{O'rganilgan bilimlarni kod bilan bog'lay olasiz:}
           \texttt{sklearn.TfidfVectorizer} ni qo'lda hisoblangan
           raqamlar bilan moslashtira olasiz.
   \end{enumerate}
   \vspace{4pt}
   \begin{tcolorbox}[defbox,title=Oldindan talab]
     \footnotesize
-    Python asoslari (ro'yxat, tsikl, funksiya);
+    Minimum talablar: Python asoslari (ro'yxat, sikl, funksiya);
     maktab darajasida logarifm.
     Eslab qolmagan bo'lsangiz --- ilova slayd \textbf{S1} ga qarang.
   \end{tcolorbox}
@@ -200,27 +196,27 @@
 % ----------------------------------------------------------------
 % [D] REJA VA VAQT BYUDJETI
 % ----------------------------------------------------------------
-\begin{frame}{Dars Rejasi: To'rt Tsikl, 80 Daqiqa}
+\begin{frame}{Bugungi dars rejasi:}
   \begin{center}
   \small
-  \begin{tabular}{clcc}
+  \begin{tabular}{c p{3.8cm} c p{3.6cm}}
     \toprule
-    \textbf{Tsikl} & \textbf{Mavzu} & \textbf{Vaqt} & \textbf{Asosiy chiqish} \\
+    \textbf{Reja raqami}& \textbf{Mavzu} & \textbf{Vaqt} & \textbf{Hosil bo'luvchi natija}\\
     \midrule
     1 & NLPga kirish, tarixi, sentiment & 15 daq & Sentiment tahlil tushunchasi \\
     2 & Matnni qayta ishlash (5 bosqich) & 22 daq & Uzbek-aware pipeline + kod \\
     3 & BoW va TF-IDF vektorizatsiya & 25 daq & Qo'lda hisoblangan TF-IDF \\
     4 & NLP vazifalari va ilovalar & 12 daq & Vazifalar xaritasi \\
     \midrule
-      & Xulosa, ko'prik P1 ga, savollar & 6 daq & Ertaga nima qurasiz \\
+      & Xulosa, 1-amaliyotga ko'rsatmalar, savollar& 6 daq & Ertangi amaliyotda nima qurishingizni tushunish\\
     \bottomrule
   \end{tabular}
   \end{center}
   \vspace{4pt}
-  \begin{tcolorbox}[warnbox,title=Har tsikl qanday qurilgan]
-    \footnotesize
+  \begin{tcolorbox}[warnbox,title=Har bir reja qanday qurilgan]
+    \footnotesize\sloppy
     intuitsiya $\to$ rasmiy ta'rif $\to$ qo'lda misol $\to$ sizning vazifangiz
-    ($\to$ kod ko'prigi). Har qo'lda hisoblangan raqam ertangi P1 da
+    ($\to$ kod bilan ishlash uchun ko'prik). Har qo'lda hisoblangan raqam ertangi amaliyotda
     \texttt{assert} sifatida tekshiriladi.
   \end{tcolorbox}
 \end{frame}
@@ -228,17 +224,17 @@
 % ----------------------------------------------------------------
 % [E] MUAMMO BIRINCHI: NAIVE YONDASHUV XATO BERADI
 % ----------------------------------------------------------------
-\begin{frame}{Muammo: ``Yaxshi'' Kalit So'zi Salbiy Sharhni Musbat Deb Belgilaydi}
+\begin{frame}{Bugungi dars uchun muammo: Klassik modellarda ``yaxshi'' so'zi aslida salbiy bo'lgan sharhni ijobiy deb ko'rsatadi}
   \begin{columns}[T]
     \begin{column}{0.50\textwidth}
-      \textbf{Maqsad}: sharh musbat yoki salbiy?\\[5pt]
-      \textbf{Sodda yondashuv}: agar ``yaxshi'' so'zi bo'lsa --- musbat.\\[5pt]
+      \textbf{Maqsad}: sharh ijobiy yoki salbiy ekanligini aniqlash (sentiment tahlil)\\[5pt]
+      \textbf{Sodda yondashuv}: agar ``yaxshi'' so'zi bo'lsa --- ijobiy.\\[5pt]
       \begin{tcolorbox}[warnbox,title=Natija xato!,top=2pt,bottom=2pt]
         \small
         \textit{``Bu mahsulot \underline{yaxshi} emas,}\\
         \textit{qaytarib bering!''}\\[3pt]
-        naive: ``yaxshi'' topildi\\
-        $\Rightarrow$ \textbf{musbat} \hfill\alert{???}
+        sodda model natijasi: ``yaxshi'' topildi\\
+        $\Rightarrow$ \textbf{ijobiy} \hfill\alert{???}
       \end{tcolorbox}
       \vspace{4pt}
       \footnotesize Boshqa muammolar:
@@ -249,18 +245,18 @@
       \end{itemize}
     \end{column}
     \begin{column}{0.46\textwidth}
-      \textbf{NLP yondashuvi:}\\[4pt]
+      \textbf{Bu muammolar uchun NLP yondashuvi:}\\[4pt]
       \begin{enumerate}\small\setlength\itemsep{4pt}
-        \item \textbf{Preprocessing} (bugun): tozalash, vektorlash
-        \item \textbf{Vektorizatsiya} (bugun): BoW / TF-IDF
-        \item \textbf{Model o'qitish}: logistik regressiya (3-ma'ruza)
+        \item \textbf{Preprocessing}: matnni tozalash, vektorlash
+        \item \textbf{Vektorizatsiya}: BoW / TF-IDF 
+        \item \textbf{Model o'qitish}: logistik regressiya
         \item \textbf{Baholash}: F1, confusion matrix
       \end{enumerate}
       \vspace{5pt}
-      \begin{tcolorbox}[okbox,title=Bugun o'rganasiz,top=2pt,bottom=2pt]
+      \begin{tcolorbox}[okbox,title=Bugun o'rganamiz,top=2pt,bottom=2pt]
         \footnotesize
-        1--2 qadamlar: preprocessing va
-        vektorizatsiya. Tasniflash ---
+        Yuqoridagilardan 1--2 qadamlar: preprocessing va
+        vektorizatsiyani bugun o'rganamiz. Tasniflash ---
         L2 (2-ma'ruza).
       \end{tcolorbox}
     \end{column}
@@ -268,13 +264,13 @@
 \end{frame}
 
 % ================================================================
-\section[NLPga kirish]{NLPga Kirish va Tarixi}
+\section[NLPga kirish]{NLPga kirish}
 % ================================================================
 
 % ----------------------------------------------------------------
 % [F1] INTUITSIYA: NLP HAMMA JOYDA
 % ----------------------------------------------------------------
-\begin{frame}{NLP Hamma Joyda: Siz Ham Undan Foydalanasiz}
+\begin{frame}{NLP qo'llanilish sohalari}
   \begin{columns}[T]
     \begin{column}{0.48\textwidth}
       \textbf{Kundalik hayotda NLP:}\\[4pt]
@@ -289,20 +285,20 @@
       \end{itemize}
     \end{column}
     \begin{column}{0.48\textwidth}
-      \textbf{Kapstone darsi --- o'zbek NLP:}\\[4pt]
+      \textbf{Loyihaviy darslarda o'zbek NLP loyihalarini qurasiz:}\\[4pt]
       \small
       \begin{itemize}\setlength\itemsep{4pt}
-        \item Uzum Market sharhlar $\to$ sentiment
-        \item O'zbek yangiliklari $\to$ tasnif
+        \item Uzum Market sharhlar $\to$ sentiment tahlili
+        \item O'zbek yangiliklari $\to$ tasniflash
         \item Hujjatlar bazasi $\to$ semantik qidiruv
         \item So'rov $\to$ RAG asosida javob
       \end{itemize}
       \vspace{6pt}
       \begin{tcolorbox}[defbox,title=Umumiy qonun]
         \footnotesize
-        Har qanday matn vazifasi:\\
-        \textbf{tozalash $\to$ vektor $\to$ model.}\\
-        Bugun --- birinchi ikki qadam.
+        Har qanday matn bilan ishlashda vazifangiz:\\
+        \textbf{tozalash $\to$ vektorlash $\to$ model.}\\
+        Bugun --- birinchi ikki qadamni ko'ramiz.
       \end{tcolorbox}
     \end{column}
   \end{columns}
@@ -311,7 +307,7 @@
 % ----------------------------------------------------------------
 % [G1] RASMIY TA'RIF + TAKSONOMIYA
 % ----------------------------------------------------------------
-\begin{frame}{NLP --- Tabiiy Tilni Qayta Ishlash: Rasmiy Ta'rif}
+\begin{frame}{NLP --- Tabiiy tilni qayta ishlash ta'rifi:}
   \begin{tcolorbox}[defbox,title=Ta'rif: NLP (Tabiiy tilni qayta ishlash)]
     \textbf{NLP} (\textit{Natural Language Processing}) ---
     kompyuter fanlari va lingvistikaning kesishmasi;
@@ -321,12 +317,12 @@
   \bunda{%
     \textit{corpus} = matnlar to'plami;
     \textit{token} = so'z yoki belgi birligi;
-    \textit{label} = tasniflash nishoni
+    \textit{label} = toifa (sinf) yorlig'i
   }
   \vspace{5pt}
   \begin{columns}[T]
     \begin{column}{0.30\textwidth}
-      \textbf{Kiritma:}\\[3pt]
+      \textbf{Kirish:}\\[3pt]
       \footnotesize
       Xom matn (string)\\
       Yangiliklar, sharhlar\\
@@ -342,11 +338,11 @@
       Qidiruv (retrieval)
     \end{column}
     \begin{column}{0.30\textwidth}
-      \textbf{Chiqarma:}\\[3pt]
+      \textbf{Chiqish:}\\[3pt]
       \footnotesize
-      Sinf belgisi\\
-      Annotatsiyalangan\\
-      ketma-ketlik\\
+      Sinf yorlig'i\\
+      Annotatsiyalangan matn\\
+      Ketma-ketlik\\
       Yangi matn
     \end{column}
   \end{columns}
@@ -355,7 +351,7 @@
 % ----------------------------------------------------------------
 % [H1] TARIX VAQT O'QI
 % ----------------------------------------------------------------
-\begin{frame}{NLP Tarixi: Qoidalardan Neyron Tarmoqlargacha}
+\begin{frame}{NLP tarixi: Qoidalarga asoslangan usullardan Neyron tarmoqlargacha}
   \begin{center}
   \begin{tikzpicture}[
       era/.style={draw, fill=cnubluebg, rounded corners=3pt,
@@ -385,14 +381,14 @@
       1-hafta: Statistik + ML (BoW, TF-IDF, LR, NB)\\
       2-hafta: Word2Vec, N-gram, RNN\\
       3-hafta: LSTM, Seq2Seq, Transformer\\
-      4-hafta: BERT fine-tuning, RAG, agentlar
+      4-hafta: BERT fine-tuning, RAG, agentlarni o'rganamiz.
     \end{column}
     \begin{column}{0.46\textwidth}
       \begin{tcolorbox}[warnbox,title=O'zbek NLP haqiqati,top=2pt,bottom=2pt]
         \footnotesize
-        O'zbek uchun asosiy muammo:
-        \textbf{labeled data kamligi}.
-        Barcha usullar --- qoidadan
+        O'zbek tili uchun asosiy muammo:
+        \textbf{"labeled data" kamligi}.
+        Barcha usullar --- qoidaga asoslangan usullardan
         LLM gacha --- shu muammoni
         turli yo'llar bilan hal qiladi.
       \end{tcolorbox}
@@ -406,7 +402,7 @@
 % ================================================================
 
 % [A-1] OVERVIEW: LINGUISTIK DARAJALAR STEK
-\begin{frame}{Til Qanday Tashkil Etilgan? Linguistik Darajalar Stek}
+\begin{frame}{Til nimalardan tarkib topgan? Lingvistik darajalar.}
   \begin{tcolorbox}[defbox,title=Ta'rif: Tilning besh darajasi (linguistic levels)]
     \small
     Lingvistika tilni \textbf{besh darajada} o'rganadi ---
@@ -422,14 +418,14 @@
                   minimum width=9.5cm, minimum height=0.62cm,
                   font=\small\bfseries, align=center}
   ]
-    \node[top] (p)  {5.~Pragmatika / Diskurs \;---\; kontekstdagi ma'no; gaplararo aloqa};
+    \node[top] (p)  {5.~Pragmatika / Diskursiya \;---\; kontekstdagi ma'no; gaplararo aloqa};
     \node[lvl, below=2mm of p]  (s)  {4.~Semantika \;---\; so'z ma'nosi va ko'p ma'nolilik};
-    \node[lvl, below=2mm of s]  (sy) {3.~Sintaksis \;---\; gap tuzilishi (SOV / SVO)};
+    \node[lvl, below=2mm of s]  (sy) {3.~Sintaksis \;---\; gap tuzilishi};
     \node[lvl, below=2mm of sy] (m)  {2.~Morfologiya \;---\; so'z tuzilishi
           (\textit{kitob+lar+imiz+dan})};
     \node[lvl, below=2mm of m]  (ph)
-          {\textcolor{halfgray}{1.~Fonologiya \;---\; tovush tizimi
-          (matnli NLP uchun ko'rinmas)}};
+          {\textcolor{halfgray}{1.~Fonetika \;---\; tovush tizimi
+          }};
   \end{tikzpicture}
   \end{center}
   \vspace{3pt}
@@ -439,11 +435,11 @@
 \end{frame}
 
 % [A-2] MORFOLOGIYA
-\begin{frame}{Morfologiya: O'zbek So'z Tuzilishi NLP ni Qiyinlashtiradi}
+\begin{frame}{Morfologiya: O'zbek so'z tuzilishi NLP ni qiyinlashtiradi}
   \begin{tcolorbox}[defbox,title=Ta'rif: Morfologiya (so'z tuzilishi)]
     \small
     \textbf{Agglutinativ til}: bitta so'zga bir nechta qo'shimcha yopishadi.
-    O'zbek --- agglutinativ;
+    O'zbek tili --- agglutinativ til;
     ingliz --- izolyativga yaqin (qo'shimchalar kam).
   \end{tcolorbox}
   \vspace{3pt}
@@ -467,24 +463,24 @@
     \begin{column}{0.46\textwidth}
       \begin{tcolorbox}[warnbox,title=BoW va TF-IDF muammosi,top=2pt,bottom=2pt]
         \footnotesize
-        BoW har shakl = \textbf{alohida token}:\\[3pt]
+        BoW da har bir shakl \textbf{alohida token} hisoblanadi:\\[3pt]
         \texttt{"kitob"} $\ne$ \texttt{"kitoblar"}\\
         $\ne$ \texttt{"kitoblarimizdan"}\\[3pt]
         $\Rightarrow$ lug'at ($|V|$) portlashi\\
         $\Rightarrow$ siyrak matritsa ($\uparrow$)\\[4pt]
         \textbf{Yechim}: stemming ---\\
-        bugungi 2-tsikl, m01.
+        bugungi darsning 2-rejasi.
       \end{tcolorbox}
     \end{column}
   \end{columns}
 \end{frame}
 
 % [A-3] SINTAKSIS VA SEMANTIKA
-\begin{frame}{Sintaksis va Semantika: Tartib Muhim, Ma'no Murakkab}
+\begin{frame}{Sintaksis va semantika: tartib muhim, ma'no murakkab}
   \begin{columns}[T]
     \begin{column}{0.48\textwidth}
       \textbf{Sintaksis} (gap tuzilishi):\\[3pt]
-      \begin{tcolorbox}[defbox,title=SOV vs SVO,top=2pt,bottom=2pt]
+      \begin{tcolorbox}[defbox,title={SOV (subject, object, verb) vs SVO},top=2pt,bottom=2pt]
         \footnotesize
         O'zbek: \textbf{S--O--V}\\
         \textit{``Men kitob o'qiyman.''}\\[3pt]
@@ -522,17 +518,17 @@
 \end{frame}
 
 % [A-4] PRAGMATIKA, DISKURS VA NLP QAMROVI
-\begin{frame}{Pragmatika, Diskurs va NLP Qamrovi}
+\begin{frame}{Pragmatika, diskursiya va NLP qamrovi}
   \begin{columns}[T]
     \begin{column}{0.50\textwidth}
       \textbf{Pragmatika} (kontekstdagi ma'no):\\[3pt]
       \small
       \textit{``Ha, zo'r mahsulot\ldots{} 3 kun kechikib keldi.''}\\
       \footnotesize$\to$ \alert{kinoyaviy salbiy} (sarkazm)\\[4pt]
-      TF-IDF ``zo'r'' da \textbf{musbat} ko'radi ---
+      TF-IDF ``zo'r'' so'zini \textbf{ijobiy} deb hisoblaydi ---
       kontekstni bilmaydi.\\
       BERT va LLM kontekstni hisobga oladi (L13--L16).\\[5pt]
-      \textbf{Diskurs} (gaplararo aloqa):\\[3pt]
+      \textbf{Diskursiya} (gaplararo aloqa):\\[3pt]
       \small
       \textit{``Alisher keldi. \underline{U} kitob olib keldi.''}\\
       \footnotesize``U'' $\to$ ``Alisher'' --- ko-referentsiya.\\
@@ -543,9 +539,9 @@
       \footnotesize
       \begin{tabular}{p{1.8cm}p{3.0cm}}
         \toprule
-        Daraja & Bu kursdagi qurol \\
+        Daraja & Bu kurs qamrovi\\
         \midrule
-        Fonologiya  & \textcolor{halfgray}{Speech --- tashqarida} \\
+        Fonetika& \textcolor{halfgray}{Speech --- bu kursdan tashqarida}\\
         Morfologiya & Preprocessing, m01 \\
         Sintaksis   & POS, parse (L5--L6) \\
         Semantika   & Embedding (L3--L6) \\
@@ -566,30 +562,30 @@
 % ----------------------------------------------------------------
 % [I1] QO'LDA MISOL: SENTIMENT TAHLIL
 % ----------------------------------------------------------------
-\begin{frame}{Sentiment Tahlili: Sharh Musbatmi Yoki Salbiy?}
-  \textbf{Vazifa}: Uzum Market sharhlarini musbat / salbiy deb tasniflash.
+\begin{frame}{Sentiment tahlili: Sharh ijobiymi yoki salbiy?}
+  \textbf{Vazifa}: Uzum Market sharhlarini ijobiy / salbiy deb tasniflash.
   \vspace{5pt}
   \begin{columns}[T]
     \begin{column}{0.50\textwidth}
-      \textbf{Kiritma (xom sharhlar):}\\[5pt]
+      \textbf{Kirish (xom sharhlar):}\\[5pt]
       \small
       \textit{``Bu dastur juda qulay va tezkor!''}\\[3pt]
       \textit{``Yetkazib berish 3 kun kechikdi.''}\\[3pt]
       \textit{``Narxi yaxshi, lekin sifati o'rtacha.''}
     \end{column}
     \begin{column}{0.46\textwidth}
-      \textbf{Maqsad (label):}\\[5pt]
+      \textbf{Yorliq (label):}\\[5pt]
       \small
-      $\to$ \textbf{musbat} \textcolor{deepgreen}{\large$+$}\\[3pt]
+      $\to$ \textbf{ijobiy} \textcolor{deepgreen}{\large$+$}\\[3pt]
       $\to$ \textbf{salbiy} \textcolor{deepred}{\large--}\\[3pt]
       $\to$ \textbf{salbiy} \textcolor{deepred}{\large--}
-            \quad\footnotesize(``lekin'' zid bildiradi)
+            \quad\footnotesize(``lekin'' zidlikni bildiradi)
     \end{column}
   \end{columns}
   \vspace{7pt}
   \textbf{Sodda pipeline:}
   \begin{enumerate}\small\setlength\itemsep{2pt}
-    \item So'zlarni sanash (BoW / TF-IDF) --- \textit{bugun, tsikl 3}
+    \item So'zlarni sanash (BoW / TF-IDF) --- \textit{bugungi 3-reja}
     \item Chastotaga asoslangan model o'qitish (logistik regressiya) --- \textit{L2}
     \item Yangi sharh uchun bashorat
   \end{enumerate}
@@ -600,10 +596,10 @@
 % ----------------------------------------------------------------
 % [J1] SIZNING VAZIFANGIZ
 % ----------------------------------------------------------------
-\begin{frame}{Sizning Vazifangiz: Sentiment Taxmin Qiling}
+\begin{frame}{Sizning vazifangiz: Sentiment ni taxmin qiling}
   \begin{tcolorbox}[warnbox,title=Savol --- 30 soniya]
     \small
-    Quyidagi sharh musbatmi yoki salbiy?\\[4pt]
+    Quyidagi sharh ijobiymi yoki salbiy?\\[4pt]
     \textit{``Mahsulot o'z vaqtida keldi, ammo rang kutganimdek emas edi.''}\\[4pt]
     Qaysi so'z yoki ibora sizning qaroringizni belgiladi?
   \end{tcolorbox}
@@ -611,7 +607,7 @@
   \begin{tcolorbox}[okbox,title=Javob]
     \small
     \textbf{Salbiy} --- ``ammo \ldots{} emas edi'' iborasi salbiy his-tuyg'uni bildiradi.\\[3pt]
-    ``O'z vaqtida keldi'' --- musbat signal, lekin ``ammo'' dan keyingisi ustun turadi.\\[3pt]
+    ``O'z vaqtida keldi'' --- ijobiy signal, lekin ``ammo'' dan keyingisi ustun turadi.\\[3pt]
     \alert{Muammo}: oddiy BoW bu ``ammo''--``emas'' kombinatsiyasini \textbf{ko'rmaydi}
     --- ikkala so'z alohida-alohida hisoblanadi.\\
     Yechim: n-gramlar (5-ma'ruza) yoki BERT (13-ma'ruza).
@@ -619,18 +615,18 @@
 \end{frame}
 
 % ================================================================
-\section[Ishlov berish]{Matnni Qayta Ishlash}
+\section[Ishlov berish]{Matnni qayta ishlash}
 % ================================================================
 
 % ----------------------------------------------------------------
 % [F2] INTUITSIYA: XOM MATN SHOVQIN TO'LA
 % ----------------------------------------------------------------
-\begin{frame}{Xom Matn Shovqin To'la --- Tozalash Shart}
+\begin{frame}{Xom matn shovqinga to'la bo'ladi --- tozalash shart}
   \begin{columns}[T]
     \begin{column}{0.50\textwidth}
-      \textbf{Xom kiritma:}\\[4pt]
+      \textbf{Xom kirish:}\\[4pt]
       \small\ttfamily
-      ``Toshkentda NLP O'RGANISH\\
+      ``Issiq yozda NLP O'RGANISH\\
       JUDA qiziq!!! :) \#nlp''
       \\[7pt]
       \normalfont\small Muammolar:
@@ -643,14 +639,14 @@
       \end{itemize}
     \end{column}
     \begin{column}{0.46\textwidth}
-      \textbf{Tozalangan chiqarma:}\\[4pt]
+      \textbf{Tozalangan chiqish:}\\[4pt]
       \small\ttfamily
-      ['toshkent', 'nlp', 'o'rgan', 'qiziq']
+      ['issiq', 'yoz', 'nlp', 'o'rgan', 'qiziq']
       \\[7pt]
       \normalfont\small Foyda:
       \begin{itemize}\footnotesize\setlength\itemsep{2pt}
         \item Lug'at hajmi kamayadi ($|V|$ $\downarrow$)
-        \item Hujjatlar taqqoslanadigan bo'ladi
+        \item Gap (dokument)lar taqqoslanadigan bo'ladi
         \item Bir o'zakli shakllar birga guruhlanadi
       \end{itemize}
       \begin{tcolorbox}[okbox,top=2pt,bottom=2pt]
@@ -666,7 +662,7 @@
 % ----------------------------------------------------------------
 % [G2] PREPROCESSING BOSQICHLARI
 % ----------------------------------------------------------------
-\begin{frame}{Preprocessing Pipeline: Besh Bosqich}
+\begin{frame}{Besh bosqichli preprocessing pipeline}
   \begin{tcolorbox}[defbox,title=Ta'rif: Preprocessing pipeline]
     \small
     \begin{enumerate}\setlength\itemsep{3pt}
@@ -694,14 +690,14 @@
 % ----------------------------------------------------------------
 % [H2a] TOKENIZATSIYA: APOSTROF MUAMMOSI
 % ----------------------------------------------------------------
-\begin{frame}[fragile]{Tokenizatsiya: O'zbek Apostrofida Yashirin Muammo}
+\begin{frame}[fragile]{Tokenizatsiya}
   \begin{columns}[T]
     \begin{column}{0.50\textwidth}
       \textbf{Ingliz uchun oddiy:}\\[3pt]
       \footnotesize\ttfamily
       "it is good".split()\\
       \textrightarrow{} ["it","is","good"]\\[7pt]
-      \normalfont\small\textbf{O'zbek uchun murakkab:}\\[3pt]
+      \normalfont\small\textbf{O'zbek tili uchun murakkab: O'zbek apostrofida yashirin muammo bor}\\[3pt]
       \footnotesize
       Apostrofning \textbf{2 turi} mavjud:
       \begin{itemize}\setlength\itemsep{2pt}
@@ -742,7 +738,7 @@ tokenize_uz("o'rganish qiziq")
 % ----------------------------------------------------------------
 % [H2b] STOP-WORDS VA STEMMING
 % ----------------------------------------------------------------
-\begin{frame}{Stop-Words Filtrlash va Stemming: Muhim So'zlarni Qoldiring}
+\begin{frame}{Stop-words filtrlash va stemming}
   \begin{columns}[T]
     \begin{column}{0.48\textwidth}
       \textbf{Stop-words (o'zbek misoli):}\\[4pt]
@@ -750,7 +746,7 @@ tokenize_uz("o'rganish qiziq")
       \textit{``va'', ``yoki'', ``bu'', ``ham'',\\
       ``lekin'', ``esa'', ``juda'', ``bilan''\ldots}\\[4pt]
       \footnotesize
-      Bu so'zlar barcha hujjatlarda tez uchraydi
+      Bu so'zlar barcha gap (dokument)larda tez uchraydi
       $\Rightarrow$ $\mathrm{df}$ yuqori $\Rightarrow$ $\mathrm{IDF}$ past
       $\Rightarrow$ $\mathrm{TF\text{-}IDF}$ past.\\[4pt]
       Filtrlash foydasi: lug'at $|V|$ kamayadi,
@@ -770,9 +766,9 @@ tokenize_uz("o'rganish qiziq")
         \bottomrule
       \end{tabular}\\[5pt]
       \footnotesize
-      \textbf{Stem}: qo'shimcha qirqadi --- tezroq\\
-      \textbf{Lemma}: lug'at shakli --- aniqroq\\[3pt]
-      O'zbek uchun: Snowball yoki regex.
+      \textbf{Stem}: qo'shimcha qirqadi --- tezroq ishlaydi\\
+      \textbf{Lemma}: lug'at shakli --- aniqroq ishlaydi\\[3pt]
+      O'zbek tili uchun: Snowball yoki regex.
     \end{column}
   \end{columns}
 \end{frame}
@@ -780,8 +776,8 @@ tokenize_uz("o'rganish qiziq")
 % ----------------------------------------------------------------
 % [I2] QO'LDA MISOL: BESH BOSQICH
 % ----------------------------------------------------------------
-\begin{frame}{Qo'lda Misol: Besh Bosqichdan O'tish}
-  \textbf{Kiritma:} \texttt{"O'zbekistonda NLP o'rganish juda qiziqarli!"}
+\begin{frame}{Misol: Yuqoridagi besh bosqichdan qo'lda o'tish}
+  \textbf{kirish:} \texttt{"O'zbekistonda NLP o'rganish juda qiziqarli!"}
   \vspace{5pt}
   \begin{center}
   \begin{tabular}{clp{7.8cm}}
@@ -792,7 +788,7 @@ tokenize_uz("o'rganish qiziq")
       \texttt{\tiny["O'zbekistonda","NLP","o'rganish","juda","qiziqarli","!"]} \\[2pt]
     2 & Kichik harf &
       \texttt{\tiny["o'zbekistonda","nlp","o'rganish","juda","qiziqarli","!"]} \\[2pt]
-    3 & Tinish tozalash &
+    3 & Tinish belgilarini tozalash&
       \texttt{\tiny["o'zbekistonda","nlp","o'rganish","juda","qiziqarli"]} \\[2pt]
     4 & Stop-words &
       \texttt{\tiny["o'zbekistonda","nlp","o'rganish","qiziqarli"]}
@@ -814,7 +810,7 @@ tokenize_uz("o'rganish qiziq")
 % ----------------------------------------------------------------
 % [J2] SIZNING VAZIFANGIZ: PREPROCESSING
 % ----------------------------------------------------------------
-\begin{frame}{Sizning Vazifangiz: Matnni Qo'lda Tozalang}
+\begin{frame}{Sizning vazifangiz: Matnni qo'lda tozalang}
   \begin{tcolorbox}[warnbox,title=Savol --- 2 daqiqa]
     \small
     Quyidagi matnni 5 bosqichdan o'tkazing:\\[4pt]
@@ -835,7 +831,7 @@ tokenize_uz("o'rganish qiziq")
 % ----------------------------------------------------------------
 % [K2] KOD <-> PIPELINE
 % ----------------------------------------------------------------
-\begin{frame}[fragile]{Kod $\leftrightarrow$ Pipeline: Uzbek Regex Tokenizer}
+\begin{frame}[fragile]{Kod $\leftrightarrow$ Pipeline: Uzbek regex tokenizer}
   \begin{columns}[T]
     \begin{column}{0.55\textwidth}
 \begin{lstlisting}[title=preprocessing\_uz.py]
@@ -889,21 +885,21 @@ def preprocess(text):
 % ----------------------------------------------------------------
 % [L2] TUZOG': APOSTROF BIRLIGI TOKENIZERNI SINDIRADI
 % ----------------------------------------------------------------
-\begin{frame}{Tuzog': Apostrof Birligi Tokenizer'ni Sindiradi}
+\begin{frame}{O'zbek apostrof belgisi Tokenizerni ishdan chiqaradi}
   \begin{tcolorbox}[warnbox,title=Haqiqiy xato --- amaliyotda tez-tez uchraydi]
     \small
     Word, Google Docs ko'pincha U+2019 (\texttt{'}) ni ishlatadi.\\[3pt]
     Agar \texttt{re.findall(r"[a-z']+")} da faqat ASCII \texttt{'} (0x27) bo'lsa
-    va hujjatda U+2019 (\texttt{'}) bo'lsa:\\[3pt]
+    va gap (dokument)da U+2019 (\texttt{'}) bo'lsa:\\[3pt]
     \texttt{"o\textquoteleft{}rganish"} $\to$ \texttt{["o", "rganish"]}
     \quad\alert{NOTO'G'RI}
   \end{tcolorbox}
   \vspace{4pt}
-  \begin{tcolorbox}[okbox,title=Yechim: ikkala Unicode nuqtasini qo'llang]
+  \begin{tcolorbox}[okbox,title=Yechim: ikkala Unicode belgisini qo'llang]
     \small
     \texttt{re.findall(r"[a-z\textbackslash{}u2019']+" , text.lower())}\\[4pt]
     \footnotesize
-    \textbackslash{}u2019 = U+2019 (') va \texttt{'} (ASCII 0x27) ikkisini ushlaydi.\\[3pt]
+    \textbackslash{}u2019 = U+2019 (') va \texttt{'} (ASCII 0x27) ikkala apostrofni ushlaydi.\\[3pt]
     P1 darsida \texttt{uzbek\_tokenize()} shu regex'ni ishlatadi ---
     bu kurs davomida standart tokenizer sifatida qabul qilinadi.
   \end{tcolorbox}
@@ -914,16 +910,16 @@ def preprocess(text):
 \end{frame}
 
 % ================================================================
-\section[BoW va TF-IDF]{Matn Vektorizatsiyasi}
+\section[BoW va TF-IDF]{Matn vektorizatsiyasi}
 % ================================================================
 
 % ----------------------------------------------------------------
 % [F3] BOW INTUITSIYA
 % ----------------------------------------------------------------
-\begin{frame}{BoW: Har Bir Hujjat So'zlar To'plami Sifatida}
+\begin{frame}{BoW: Har bir gap so'zlar to'plami sifatida}
   \begin{columns}[T]
     \begin{column}{0.40\textwidth}
-      \textbf{3 ta hujjat:}\\[6pt]
+      \textbf{3 ta gap:}\\[6pt]
       \small
       D1: \texttt{"nlp qiziq"}\\[3pt]
       D2: \texttt{"python foydali"}\\[3pt]
@@ -944,10 +940,10 @@ def preprocess(text):
         \bottomrule
       \end{tabular}\\[6pt]
       \footnotesize
-      Har satr --- hujjat vektori $\mathbf{d}_i \in \mathbb{R}^4$.\\
+      Har satr --- gap (dokument) vektori $\mathbf{d}_i \in \mathbb{R}^4$.\\
       So'z \textbf{tartibi saqlanmaydi}!\\[3pt]
       \alert{Muammo}: ``nlp'' D1 va D3 da bir xil.\\
-      $\to$ Yechim: TF-IDF og'irlash.
+      $\to$ Yechim: TF-IDF qo'llash.
     \end{column}
   \end{columns}
 \end{frame}
@@ -955,18 +951,18 @@ def preprocess(text):
 % ----------------------------------------------------------------
 % [G3] BOW RASMIY TA'RIF
 % ----------------------------------------------------------------
-\begin{frame}{So'z Qopi (Bag of Words) --- Rasmiy Ta'rif}
-  \begin{tcolorbox}[defbox,title=Ta'rif: So'z qopi (Bag of Words)]
+\begin{frame}{Bag of Words}
+  \begin{tcolorbox}[defbox,title=Ta'rif: Bag of Words]
     \textbf{Lug'at}: $V = \{w_1, w_2, \ldots, w_{|V|}\}$ ---
-    korpusdagi barcha noyob tokenlar to'plami.\\[5pt]
-    \textbf{Hujjat vektori}: $\mathbf{d}_i \in \mathbb{R}^{|V|}$,
-    bunda $d_{i,j} = $ ``$w_j$ so'zining $D_i$ hujjatdagi
-    paydo bo'lish soni''.
+    korpusdagi barcha unikal tokenlar to'plami.\\[5pt]
+    \textbf{gap (dokument) vektori}: $\mathbf{d}_i \in \mathbb{R}^{|V|}$,
+    bunda $d_{i,j} = $ ``$w_j$ so'zining $D_i$ gap (dokument)dagi
+    uchrash soni''.
   \end{tcolorbox}
   \vspace{5pt}
   \bunda{%
     $V$ = lug'at; $|V|$ = lug'at hajmi;
-    $\mathbf{d}_i$ = $i$-hujjat vektori;
+    $\mathbf{d}_i$ = $i$-gap (dokument) vektori;
     $d_{i,j}$ = $j$-so'z chastotasi $D_i$ da
   }
   \vspace{5pt}
@@ -975,7 +971,7 @@ def preprocess(text):
   \begin{itemize}\setlength\itemsep{3pt}
     \item $d_{i,j} \geq 0$ \quad (chastota manfiy bo'lmaydi)
     \item $d_{i,j} = 0$ \quad ($w_j$ so'zi $D_i$ da yo'q)
-    \item Vektor \textbf{siyrak} (sparse): aksariyat yozuvlar $= 0$
+    \item Vektor \textbf{siyrak} (sparse): aksariyat qiymatlar $= 0$
     \item So'z tartibi, kontekst, ma'no --- \alert{yo'qoladi}
   \end{itemize}
 \end{frame}
@@ -983,16 +979,16 @@ def preprocess(text):
 % ----------------------------------------------------------------
 % [H3a] TF FORMULA
 % ----------------------------------------------------------------
-\begin{frame}{TF: Hujjatdagi So'z Chastotasi (Term Frequency)}
+\begin{frame}{TF: Gapdagi so'z chastotasi (Term frequency)}
   \begin{tcolorbox}[defbox,title=Ta'rif: TF --- atama chastotasi]
     \[
       \mathrm{TF}(t,\, d)
-        = \text{(}t\text{ so'zining } d \text{ hujjatdagi paydo bo'lish soni)}
+        = \text{(}t\text{ so'zining } d \text{ gapdagi uchrash soni)}
     \]
   \end{tcolorbox}
   \vspace{4pt}
   \bunda{%
-    $t$ = so'z (term); $d$ = hujjat (document);
+    $t$ = so'z (term); $d$ = gap (dokument);
     bu kursda \textbf{raw count} (normalizatsiyasiz) ishlatiadi
   }
   \vspace{5pt}
@@ -1012,14 +1008,14 @@ def preprocess(text):
   \vspace{3pt}
   \footnotesize\color{halfgray}
   Boshqa ta'riflar ham bor (masalan, normalized: $\mathrm{TF}/|d|$).
-  Bu kurs raw count ishlatadi --- qo'lda hisoblash osonroq.
+  Bu kursda qo'lda hisoblash osonroq bo'lganligi uchun raw count ishlatiladi.
 \end{frame}
 
 % ----------------------------------------------------------------
 % [H3b] IDF FORMULA
 % ----------------------------------------------------------------
-\begin{frame}{IDF: Noyob So'zlar Mukofotlanadi (Inverse Document Frequency)}
-  \begin{tcolorbox}[defbox,title=Ta'rif: IDF --- teskari hujjat chastotasi]
+\begin{frame}{IDF (Inverse Document Frequency): Noyob so'zlarni mukofotlash}
+  \begin{tcolorbox}[defbox,title=Ta'rif: IDF --- teskari gap (dokument) chastotasi]
     \[
       \mathrm{IDF}(t)
         = \ln\!\left(\frac{N}{\mathrm{df}(t)}\right)
@@ -1027,8 +1023,8 @@ def preprocess(text):
   \end{tcolorbox}
   \vspace{4pt}
   \bunda{%
-    $N$ = korpusdagi jami hujjatlar soni;
-    $\mathrm{df}(t)$ = $t$ uchraydigan hujjatlar soni;
+    $N$ = korpusdagi jami gap (dokument)lar soni;
+    $\mathrm{df}(t)$ = $t$ uchraydigan gap (dokument)lar soni;
     $\ln$ = natural logarifm
   }
   \vspace{4pt}
@@ -1037,9 +1033,9 @@ def preprocess(text):
     \item Agar $N/\mathrm{df}$ juda katta bo'lsa (noyob so'z),
           $\ln$ shkalani boshqaruvchan qiladi.
     \item $\mathrm{df}(t) = N$: $\mathrm{IDF} = \ln(1) = 0$
-          \quad\textcolor{deepred}{(barcha hujjatlarda --- muhim emas)}
+          \quad\textcolor{deepred}{(barcha gap (dokument)larda --- muhim emas)}
     \item $\mathrm{df}(t) = 1$: $\mathrm{IDF} = \ln(N)$
-          \quad\textcolor{deepgreen}{(faqat bitta hujjatda --- juda muhim)}
+          \quad\textcolor{deepgreen}{(faqat bitta gap (dokument)da --- juda muhim)}
   \end{itemize}
   \vspace{3pt}
   \textbf{TF-IDF}: $\;\mathrm{TF\text{-}IDF}(t, d) = \mathrm{TF}(t,d) \times \mathrm{IDF}(t)$
@@ -1055,7 +1051,7 @@ def preprocess(text):
 % Korpus: course_map.yaml hand_example verbatim:
 %   D1='nlp qiziq', D2='python foydali', D3='nlp foydali'
 % ----------------------------------------------------------------
-\begin{frame}{Qo'lda Hisob: 3 Hujjat, TF-IDF Matritsasi (P1 Assert Raqamlari)}
+\begin{frame}{3 gap (dokument)li TF-IDF matritsasini qo'lda hisoblash:}
   \textbf{Korpus}: $N=3$;\quad
   D1=\texttt{"nlp qiziq"},\; D2=\texttt{"python foydali"},\; D3=\texttt{"nlp foydali"}\\
   $V=\{\text{nlp, qiziq, python, foydali}\}$
@@ -1112,8 +1108,8 @@ def preprocess(text):
 % ----------------------------------------------------------------
 % [J3] SIZNING VAZIFANGIZ: TF-IDF(python, D2)
 % ----------------------------------------------------------------
-\begin{frame}{Sizning Vazifangiz: TF-IDF(\textit{python}, D2) Hisoblang}
-  \begin{tcolorbox}[warnbox,title=Savol --- 2 daqiqa (xuddi shu korpus)]
+\begin{frame}{Sizning vazifangiz: TF-IDF(\textit{python}, D2) hisoblang}
+  \begin{tcolorbox}[warnbox,title=Savol --- 2 daqiqa (xuddi shu  yuqoridagi korpus)]
     \small
     D1=\texttt{"nlp qiziq"},\;
     D2=\texttt{"python foydali"},\;
@@ -1141,7 +1137,7 @@ def preprocess(text):
 % ----------------------------------------------------------------
 % [K3] KOD <-> FORMULA BRIDGE
 % ----------------------------------------------------------------
-\begin{frame}[fragile]{Kod $\leftrightarrow$ Formula: TfidfVectorizer va Qo'lda Hisob}
+\begin{frame}[fragile]{Kod $\leftrightarrow$ Formula: TfidfVectorizer va qo'lda hisob-kitob}
   \begin{columns}[T]
     \begin{column}{0.54\textwidth}
 \begin{lstlisting}[title=tfidf\_demo.py]
@@ -1178,7 +1174,7 @@ idx = vec.vocabulary_
         \bottomrule
       \end{tabular}
       \vspace{5pt}
-      \begin{tcolorbox}[warnbox,title=Ehtiyot,top=2pt,bottom=2pt]
+      \begin{tcolorbox}[warnbox,title=Ehtiyotlik bilan ishlating,top=2pt,bottom=2pt]
         \footnotesize
         sklearn \textit{default}:\\
         \texttt{smooth\_idf=True},\\
@@ -1193,24 +1189,24 @@ idx = vec.vocabulary_
 \end{frame}
 
 % ================================================================
-\section[NLP vazifalari]{NLP Vazifalari va Ilovalari}
+\section[NLP vazifalari]{NLP vazifalari va ilovalari}
 % ================================================================
 
 % ----------------------------------------------------------------
 % [F4] NLP VAZIFALAR TAKSONOMIYASI
 % ----------------------------------------------------------------
-\begin{frame}{NLP Nima Qila Oladi? Vazifalar Xaritasi}
+\begin{frame}{NLP nima qila oladi?}
   \begin{columns}[T]
     \begin{column}{0.48\textwidth}
       \begin{tcolorbox}[defbox,title=Tasniflash (Classification)]
         \footnotesize
         Matnni sinflarga ajratish\\[2pt]
-        \textbullet\; Sentiment: musbat / salbiy\\
+        \textbullet\; Sentiment: ijobiy / salbiy\\
         \textbullet\; Spam filtri: spam / ham\\
         \textbullet\; Mavzu: sport, siyosat, \ldots
       \end{tcolorbox}
       \vspace{5pt}
-      \begin{tcolorbox}[defbox,title=Teglash (Sequence Labeling)]
+      \begin{tcolorbox}[defbox,title=Teglash (Sequence labeling)]
         \footnotesize
         Har token uchun sinf belgilash\\[2pt]
         \textbullet\; NER: inson, joy, tashkilot\\
@@ -1222,16 +1218,16 @@ idx = vec.vocabulary_
         \footnotesize
         Yangi matn yaratish\\[2pt]
         \textbullet\; Tarjima: uz $\to$ en\\
-        \textbullet\; Xulosa: uzun $\to$ qisqa\\
+        \textbullet\; Xulosa: uzun matn $\to$ qisqa mazmun\\
         \textbullet\; Dialog: savol $\to$ javob
       \end{tcolorbox}
       \vspace{5pt}
       \begin{tcolorbox}[defbox,title=Qidiruv (Retrieval)]
         \footnotesize
-        Mos hujjat topish\\[2pt]
+        Mos hujjatni topish\\[2pt]
         \textbullet\; Semantik qidiruv (FAISS)\\
         \textbullet\; RAG: so'rov $\to$ kontekst $\to$\\
-        \quad\quad\quad LLM javob
+        \quad\quad\quad LLM javobi
       \end{tcolorbox}
     \end{column}
   \end{columns}
@@ -1240,7 +1236,7 @@ idx = vec.vocabulary_
 % ----------------------------------------------------------------
 % [G4] RASMIY VAZIFALAR + O'ZBEK ILOVALAR
 % ----------------------------------------------------------------
-\begin{frame}{Asosiy NLP Vazifalari va O'zbek Ilovalari}
+\begin{frame}{Asosiy NLP vazifalari va O'zbek ilovalari}
   \small
   \begin{tabular}{p{2.5cm}p{2.8cm}p{5.5cm}}
     \toprule
@@ -1255,10 +1251,10 @@ idx = vec.vocabulary_
     \bottomrule
   \end{tabular}
   \vspace{5pt}
-  \begin{tcolorbox}[okbox,title=Kapstone aloqasi,top=2pt,bottom=2pt]
+  \begin{tcolorbox}[okbox,title=Siz quradigan loyihalarga aloqasi,top=2pt,bottom=2pt]
     \footnotesize
-    Har satr --- kurs davomida qurasiz. Bugungi preprocessing (m01) barchasining
-    birinchi qadami sifatida ishlaydi.
+    Har satrtdagi ilovalarni kurs davomida qurasiz. Bugungi preprocessing (m01) barchasining
+    birinchi qadami hisoblanadi.
   \end{tcolorbox}
 \end{frame}
 
@@ -1268,11 +1264,11 @@ idx = vec.vocabulary_
 % ================================================================
 
 % [B-1] VAZIFALAR TAKSONOMIYASI
-\begin{frame}{Vazifalar Taksonomiyasi: To'rt Asosiy Tur va Kurs Yo'l Xaritasi}
+\begin{frame}{Vazifalar taksonomiyasi: To'rt asosiy vazifa turi va kurs yo'l xaritasi}
   \small
   \begin{tabular}{p{3.0cm}p{2.7cm}p{5.3cm}}
     \toprule
-    \textbf{Tur} & \textbf{Chiqarma} & \textbf{Misollar va ma'ruza} \\
+    \textbf{Tur} & \textbf{chiqish} & \textbf{Misollar va ma'ruza} \\
     \midrule
     \textbf{Klassifikatsiya} &
       1 label / matn &
@@ -1288,20 +1284,20 @@ idx = vec.vocabulary_
     \textbf{Strukturaviy bashorat} &
       Munosabatlar &
       Uch turning umumiy matematik doirasi;
-      chiqarma tuzilishiga ega (skalyar emas) \\
+      chiqish tuzilishiga ega (skalyar emas) \\
     \bottomrule
   \end{tabular}
   \vspace{5pt}
-  \begin{tcolorbox}[okbox,title=Muhim nuqta,top=2pt,bottom=2pt]
+  \begin{tcolorbox}[okbox,title=Muhim!,top=2pt,bottom=2pt]
     \footnotesize
-    Klassifikatsiya: \texttt{sigmoid}/\texttt{softmax} bitta chiqarma.
+    Klassifikatsiya: \texttt{sigmoid}/\texttt{softmax} bitta chiqish.
     Teglash: token-darajasida Bi-LSTM / CRF.
     Generatsiya: dekoder bilan Seq2Seq yoki Transformer.
   \end{tcolorbox}
 \end{frame}
 
 % [B-2] KLASSIK NLP VS END-TO-END NEYRON NLP
-\begin{frame}{Klassik NLP va End-to-End Neyron NLP: Kurs Yo'li}
+\begin{frame}{Klassik modellar bilan NLP va end-to-end neyron NLP:}
   \begin{columns}[T]
     \begin{column}{0.46\textwidth}
       \textbf{Klassik pipeline} (1-hafta, P1--P4):
@@ -1321,7 +1317,7 @@ idx = vec.vocabulary_
       \end{center}
       \footnotesize
       Har bosqich \textbf{alohida} tuzilgan,\\
-      sozlanadi va tekshiriladi.
+      moslanadi va tekshiriladi.
     \end{column}
     \begin{column}{0.50\textwidth}
       \textbf{End-to-end neyron NLP} (2--4-hafta):
@@ -1335,7 +1331,7 @@ idx = vec.vocabulary_
         \node[fin] (inp) {Xom matn (tokens)};
         \node[fin, below=2mm of inp] (emb) {Embedding qatlami};
         \node[fin, below=2mm of emb] (enc) {Encoder (Transformer)};
-        \node[fin, below=2mm of enc] (out) {Chiqarma (label / matn)};
+        \node[fin, below=2mm of enc] (out) {chiqish (label / matn)};
         \draw[arr] (inp)--(emb);
         \draw[arr] (emb)--(enc);
         \draw[arr] (enc)--(out);
@@ -1357,8 +1353,8 @@ idx = vec.vocabulary_
 % ----------------------------------------------------------------
 % [I4] TO'LIQ PIPELINE: SHARHDAN SENTIMENT BALLGACHA
 % ----------------------------------------------------------------
-\begin{frame}{To'liq Pipeline: Sharhdan Sentiment Ballgacha}
-  \textbf{Vazifa}: ``Bu mahsulot qimmat, ammo sifati a'lo!'' $\to$ musbat?
+\begin{frame}{Sharhdan sentiment ballgacha bo'lgan to'liq pipeline nimadan iborat?}
+  \textbf{Vazifa}: ``Bu mahsulot qimmat, ammo sifati a'lo!'' $\to$ ijobiy?
   \vspace{6pt}
   \begin{center}
   \begin{tikzpicture}[
@@ -1374,7 +1370,7 @@ idx = vec.vocabulary_
     \node[box, right=0.7cm of raw]  (m01)   {\texttt{m01}\\preprocess};
     \node[box, right=0.7cm of m01]  (tfidf) {TF-IDF\\vektori};
     \node[box, right=0.7cm of tfidf](clf)   {\texttt{m02}\\classifier};
-    \node[fin, right=0.7cm of clf]  (out)   {Musbat\\0.74};
+    \node[fin, right=0.7cm of clf]  (out)   {ijobiy\\0.74};
     \draw[arr] (raw)--(m01);
     \draw[arr] (m01)--(tfidf);
     \draw[arr] (tfidf)--(clf);
@@ -1389,13 +1385,13 @@ idx = vec.vocabulary_
       \texttt{["mahsulot","qimmat","sifat","alo"]}\\[3pt]
       \textbf{TF-IDF}:\\
       $[0.0,\; 0.5,\; 0.3,\; 0.9,\; \ldots]$\\[3pt]
-      \textbf{m02} (3-kun): LR bashorat $\to$ \{musbat: 0.74\}
+      \textbf{m02} (3-kun): LR bashorat $\to$ \{ijobiy: 0.74\}
     \end{column}
     \begin{column}{0.46\textwidth}
       \begin{tcolorbox}[warnbox,title=Kuzatuv,top=2pt,bottom=2pt]
         \footnotesize
         ``alo'' so'zining yuqori
-        TF-IDF musbat
+        TF-IDF ijobiy
         tasniflashga yordam beradi.
         ``qimmat'' salbiy signal ---
         model ularni og'irlaydi.
@@ -1405,13 +1401,13 @@ idx = vec.vocabulary_
 \end{frame}
 
 % [B-3] SIZNING VAZIFANGIZ: TAKSONOMIYANI ANIQLANG (ADDITION B [J])
-\begin{frame}{Sizning Vazifangiz: Taksonomiya Kategoriyasini Aniqlang}
+\begin{frame}{Sizning vazifangiz: Taksonomiya kategoriyasini aniqlang}
   \begin{tcolorbox}[warnbox,title=Savol --- 90 soniya]
     \small
     Quyidagi uch vazifa qaysi taksonomiya turiga tegishli?\\[5pt]
     \begin{enumerate}\setlength\itemsep{4pt}
       \item \textbf{Sentiment tahlil}:
-            sharh $\to$ \{musbat \,/\, salbiy\}
+            sharh $\to$ \{ijobiy \,/\, salbiy\}
       \item \textbf{NER}:
             ``Abdulloh Toshkentda ishlaydi'' $\to$
             [Abdulloh:\,SHAXS] [Toshkent:\,JOY]
@@ -1439,7 +1435,7 @@ idx = vec.vocabulary_
 % ----------------------------------------------------------------
 % [J4] SIZNING VAZIFANGIZ: ILOVANI ANIQLANG
 % ----------------------------------------------------------------
-\begin{frame}{Sizning Vazifangiz: Ilovani NLP Vazifasiga Moslang}
+\begin{frame}{Sizning vazifangiz: Ilovani NLP vazifasiga moslang}
   \begin{tcolorbox}[warnbox,title=Savol --- 2 daqiqa]
     \small
     Quyidagi ilovalar qaysi NLP vazifasiga tegishli?
@@ -1447,7 +1443,7 @@ idx = vec.vocabulary_
       \item Telegram botga ``Bugun Toshkentda ob-havo qanday?'' deb so'rash
       \item Yangiliklar saytida ``NLP'' kalit so'zi bilan mos maqolalar topish
       \item Jurnal maqolasidan 3-gaplik xulosa olish
-      \item O'zbek matnida ``Abdulloh Karimov, Toshkent'' ni aniqlash
+      \item O'zbek matnida ``Abdulloh Sharipov, Toshkent'' ni aniqlash
     \end{enumerate}
   \end{tcolorbox}
   \pause
@@ -1463,13 +1459,13 @@ idx = vec.vocabulary_
 \end{frame}
 
 % ================================================================
-\section[Xulosa]{Xulosa va Ko'prik}
+\section[Xulosa]{Xulosa}
 % ================================================================
 
 % ----------------------------------------------------------------
 % [M] O'ZBEK TILI XUSUSIYATLARI (majburiy arxetip)
 % ----------------------------------------------------------------
-\begin{frame}{O'zbek Tili: Agglutinatsiya TF-IDF Ni Chalg'itadi}
+\begin{frame}{O'zbek tili agglutinativ til va u TF-IDF ni chalg'itadi}
   \begin{columns}[T]
     \begin{column}{0.50\textwidth}
       \textbf{Agglutinativ morfologiya:}\\[4pt]
@@ -1512,7 +1508,7 @@ idx = vec.vocabulary_
 % ----------------------------------------------------------------
 % [N] SINTEZ: BOW VS TF-IDF TAQQOSLOV
 % ----------------------------------------------------------------
-\begin{frame}{Qachon Nima Ishlatish? BoW va TF-IDF Taqqoslov Jadvali}
+\begin{frame}{Qachon nima ishlatish kerak? BoW va TF-IDF taqqoslov jadvali}
   \begin{center}\small
   \begin{tabular}{p{2.8cm}p{4.2cm}p{4.2cm}}
     \toprule
@@ -1540,7 +1536,7 @@ idx = vec.vocabulary_
 % ----------------------------------------------------------------
 % [O] SEMINAL MANBA + MUHOKAMA SAVOLI
 % ----------------------------------------------------------------
-\begin{frame}{Salton (1975): 50 Yillik Poydevor}
+\begin{frame}{Salton (1975): 50 yillik poydevor}
   \begin{tcolorbox}[defbox,title=Seminal maqola]
     \small
     Salton, G., Wong, A., Yang, C.S.\ (1975).
@@ -1557,18 +1553,18 @@ idx = vec.vocabulary_
     \item Google Scholar: 10 000+ iqtibos
   \end{itemize}
   \vspace{5pt}
-  \begin{tcolorbox}[warnbox,title=Keyingi sessiyaga muhokama savoli]
+  \begin{tcolorbox}[warnbox,title=Keyingi darsga muhokama savoli]
     \small
     TF-IDF ``qiziq'' ni D1 uchun muhim so'z deb aniqladi.\\
     Ammo \textbf{``qiziq'' va ``qiziqarli''} ni bir xil ma'no deb ko'ra oladimi?\\
-    Nima yetishtirmayapti? (P1 da muhokama qilamiz.)
+    Nima yetishmayapti? (P1 da muhokama qilamiz.)
   \end{tcolorbox}
 \end{frame}
 
 % ----------------------------------------------------------------
 % [P] MAQSADLAR BAJARILDI
 % ----------------------------------------------------------------
-\begin{frame}{Bugungi Maqsadlar Bajarildi}
+\begin{frame}{Bugungi maqsadlar bajarildi}
   \begin{enumerate}\setlength\itemsep{10pt}
     \item \bajarildi \textbf{Keltirib chiqardik:}
           NLP vazifalari taksonomiyasi --- tasniflash, teglash,
@@ -1577,7 +1573,7 @@ idx = vec.vocabulary_
           tokenizatsiya, normalizatsiya, stopword filtrlash, stemming ---
           o'zbek apostrofining U+2019 muammosi bilan birga.
     \item \bajarildi \textbf{Hisobladik:}
-          3 hujjatli korpus uchun BoW matritsasi;
+          3 gap (dokument)li korpus uchun BoW matritsasi;
           $\mathrm{IDF(nlp)}\approx 0.405$,
           $\mathrm{TF\text{-}IDF(qiziq,D1)}\approx 1.099$.
     \item \bajarildi \textbf{Kodda bog'ladik:}
@@ -1589,7 +1585,7 @@ idx = vec.vocabulary_
 % ----------------------------------------------------------------
 % [Q] KO'PRIK: ERTAGA P1
 % ----------------------------------------------------------------
-\begin{frame}{Ertaga P1: Preprocessing Pipeline Qurasiz}
+\begin{frame}{Ertaga P1: Preprocessing pipeline qurasiz}
   \begin{center}
   \begin{tikzpicture}[
       mod/.style={draw, fill=cnubluebg, rounded corners=3pt,
@@ -1662,7 +1658,7 @@ idx = vec.vocabulary_
 % ================================================================
 \appendix
 
-\begin{frame}{S1: Logarifm va IDF Hisoblash (Math Refresher)}
+\begin{frame}{S1: Logarifm va IDF hisoblash}
   \begin{tcolorbox}[defbox,title=Natural logarifm xossalari]
     \small
     $\ln(1) = 0$ \quad
@@ -1690,14 +1686,14 @@ idx = vec.vocabulary_
   \texttt{import numpy as np; np.log(1.5)}
 \end{frame}
 
-\begin{frame}{S2: BoW Matritsasi Qo'lda Qurilishi --- Algoritm}
+\begin{frame}{S2: BoW matritsasini qurish algoritmi}
   \begin{enumerate}\small\setlength\itemsep{5pt}
-    \item Barcha hujjatlarni tokenizatsiya + preprocessing qiling
-    \item Barcha noyob tokenlarni yig'ing $\to$ lug'at $V$,
+    \item Barcha gap (dokument)larni tokenizatsiya + preprocessing qiling
+    \item Barcha unikal tokenlarni yig'ing $\to$ lug'at $V$,
           ularni tartiblang (alfavit bo'yicha)
     \item $|D| \times |V|$ o'lchamli nol matritsa yarating
-    \item Har hujjat uchun: har tokenni $V$ da toping $\to$
-          tegishli katakni oshiring
+    \item Har gap (dokument) uchun: har tokenni $V$ da toping $\to$
+          tegishli katakni qiymatini oshiring
   \end{enumerate}
   \vspace{4pt}
   \textbf{Bizning misolimiz:}
@@ -1716,21 +1712,21 @@ idx = vec.vocabulary_
   \footnotesize Sklearn: \texttt{CountVectorizer().fit\_transform(corpus).toarray()}
 \end{frame}
 
-\begin{frame}[fragile]{S3: Stemming Algoritmlari va O'zbek Uchun Moslash}
+\begin{frame}[fragile]{S3: Stemming algoritmlari va O'zbek tili uchun moslash}
   \begin{columns}[T]
     \begin{column}{0.48\textwidth}
       \textbf{Taniqli algoritmlar:}\\[4pt]
       \small
       \begin{itemize}\setlength\itemsep{3pt}
         \item \textbf{Porter Stemmer} (1980) --- ingliz, oddiy
-        \item \textbf{Snowball} (Porter2) --- ko'p til, tavsiya
+        \item \textbf{Snowball} (Porter2) --- ko'p tilli
         \item \textbf{Lancaster} --- tajovuzkor qirqish
         \item \textbf{Lemmatizatsiya} --- lug'at asosida, aniqroq
       \end{itemize}
       \vspace{4pt}
       \footnotesize
       \texttt{SnowballStemmer('russian')} ---\\
-      o'zbek uchun eng yaqin taxmin\\
+      o'zbek tili uchun eng yaqin taxmin\\
       (morfologik jihatdan o'xshash).
     \end{column}
     \begin{column}{0.48\textwidth}
