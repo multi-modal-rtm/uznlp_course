@@ -38,6 +38,11 @@ BINDING — consult the relevant skill before producing each artifact type.
   terms appear in parentheses on first use: "so'z qopi (Bag of Words)".
 - Code identifiers: English. Code comments addressed to tinglovchilar: Uzbek.
 - Internal docs (course_map.yaml, QA reports, commit messages): English.
+- **Capitalization and prose quality:** slide/heading/box titles use Uzbek
+  sentence case (first word + proper nouns only — never Title Case); prose
+  must read as natural human-written Uzbek. Follow skill `uzbek-course-style`
+  § "Uzbek prose & capitalization style". Applies to ALL lectures, notebooks,
+  and briefs from L2 onward. Reference example: `course/lectures/d01_nlp_asoslari.tex`.
 
 ## Repository layout (create and maintain exactly)
 

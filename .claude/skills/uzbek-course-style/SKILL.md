@@ -38,6 +38,54 @@ description: Use whenever writing any tinglovchi-facing text — slides, noteboo
   person plural), never condescending; tinglovchilar are experienced
   professionals new to THIS field only.
 
+## Uzbek prose & capitalization style
+
+### Sentence case — binding for all slide/heading text
+
+Frame titles, section headings, tcolorbox block titles, and slide-level
+headings use **Uzbek sentence case**: capitalize only the first word of the
+title plus proper nouns (O'zbek, NLP, BERT, TF-IDF, BoW, Kaggle, …).
+Do NOT capitalize every content word (Title Case). This applies to all
+future lectures, notebooks, and briefs.
+
+Concrete examples extracted from L1 (d01_nlp_asoslari.tex, reference file):
+
+| Context | WRONG (machine-generated) | RIGHT (sentence case) |
+|---------|---------------------------|----------------------|
+| Frame title | `Morfologiya: O'zbek So'z Tuzilishi NLP ni Qiyinlashtiradi` | `Morfologiya: O'zbek so'z tuzilishi NLP ni qiyinlashtiradi` |
+| Frame title | `Sintaksis va Semantika: Tartib Muhim, Ma'no Murakkab` | `Sintaksis va semantika: tartib muhim, ma'no murakkab` |
+| Frame title | `Sentiment Tahlili: Sharh Musbatmi Yoki Salbiy?` | `Sentiment tahlili: Sharh ijobiymi yoki salbiy?` |
+| Section heading | `NLPga Kirish va Tarixi` | `NLPga kirish` |
+| tcolorbox title | `O'zbek Hujjat Yordamchisi` | `O'zbek hujjat yordamchisi` |
+
+### Natural Uzbek phrasing — binding for all prose
+
+Avoid mechanical, translation-flavored, or over-formal phrasing. Patterns
+observed in L1 edits:
+
+- **Prefer native vocabulary over calques:**
+  `ijobiy/salbiy` not `musbat/salbiy`; `kirish/chiqish` not
+  `kiritma/chiqarma`; `reja` not `tsikl`; `gap` not `hujjat` when
+  referring to a corpus sentence.
+- **Inclusive first-person plural in frame-level text:**
+  `"o'rganamiz"`, `"ko'ramiz"`, `"hisoblaymiz"` — not commanding second
+  person (`"o'rganasiz"`, `"ko'ring"`). This matches the peer-to-peer
+  tone rule.
+- **Complete thoughts, not bare labels:**
+  Frame titles should be statements or questions that could stand alone.
+  `"Xom matn shovqinga to'la bo'ladi — tozalash shart"` reads better
+  than the label `"Xom Matn Shovqin To'la — Tozalash Shart"`.
+- **Vary sentence structure:** avoid the pattern `Verb: long noun clause`
+  for every objective bullet — integrate the verb into a full sentence.
+
+### Verification
+
+This is a **prose-quality goal verified by human review on Overleaf**,
+not by an automated grep gate. After compiling a new deck, the author
+reads frame titles top-to-bottom and checks: (a) no word is capitalized
+purely because it appears mid-title, and (b) phrasing sounds spoken, not
+machine-translated.
+
 ## Assert and error message style
 
 Success: short, specific, affirming — `"To'g'ri! TF-IDF matritsa shakli
