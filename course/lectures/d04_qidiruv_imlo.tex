@@ -4,9 +4,9 @@
 % "TABIIY TILNI QAYTA ISHLASH" KURSI
 % MA'RUZA 4 --- Masofaga asoslangan qidiruv va imlo tuzatish usullari
 %              (d04_qidiruv_imlo.tex)
-% Arxetiplar: [A][B][C][D][E] + [F][G][H][I][J][K][L] tarqalgan +
+% Arxetiplar: [A][B][C][D][E] + 4 tsikl [F][G][H][I][J][K][L] +
 %             [M][N][O][P][Q][R] + ilova [S]
-% Rendered slayd soni: ~27 (standart 22-28; 1-haftaning yakuniy ma'ruzasi)
+% Rendered slayd soni: ~42 (1-haftaning yakuniy ma'ruzasi; L1-L3 chuqurligi)
 % Qulflangan [I3]: edit_distance("qo'l","ko'l")=1, ("dastur","dastir")=1
 %   --- P4 (Day 5) birinchi assert manbayi (course_map hand_example).
 % ================================================================
@@ -182,7 +182,7 @@
 \begin{frame}{Siz bugungi dars oxirida quyidagilarni bajara olasiz:}
   \begin{enumerate}\setlength\itemsep{6pt}
     \item \textbf{Keltirib chiqara olasiz:} tahrir masofasi (Levenshtein)
-          dinamik dasturlash rekurrensiyasini.
+          dinamik dasturlash rekurrensiyasini va MinHash--Jaccard bog'lanishini.
     \item \textbf{Qo'lda hisoblay olasiz:} kichik so'zlar uchun tahrir
           masofasini DP jadvali bilan ($\text{edit}(\texttt{qo'l},\texttt{ko'l})=1$).
     \item \textbf{Qo'llay olasiz:} noisy channel modeli ---
@@ -195,7 +195,7 @@
     \footnotesize
     L1 dan: tokenizatsiya, apostrof muammosi. L2 dan: ehtimollik,
     $\arg\max$. L3 dan: o'xshashlik tushunchasi. Matematikadan: matritsa,
-    minimum.
+    minimum, to'plam amallari.
   \end{tcolorbox}
 \end{frame}
 
@@ -209,10 +209,10 @@
     \toprule
     \textbf{Blok}& \textbf{Mavzu} & \textbf{Vaqt} & \textbf{Hosil bo'luvchi natija}\\
     \midrule
-    1 & Tez o'xshashlik qidiruvi: KNN, LSH & 18 daq & Jaccard, LSH tushunchasi \\
+    1 & Tez o'xshashlik qidiruvi: KNN, LSH & 18 daq & Jaccard, MinHash, LSH \\
     2 & Imlo tuzatish: noisy channel & 16 daq & $\arg\max P(x{\mid}w)P(w)$ \\
-    3 & Tahrir masofasi (Levenshtein) + DP & 26 daq & Qo'lda hisoblangan DP jadval \\
-    4 & Tizim arxitekturasi & 10 daq & To'liq tuzatish quvuri \\
+    3 & Tahrir masofasi (Levenshtein) + DP & 24 daq & Qo'lda hisoblangan DP jadval \\
+    4 & Avtomatik tuzatish tizimi & 12 daq & To'liq tuzatish quvuri \\
     \midrule
       & Xulosa va 4-amaliyotga ko'rsatmalar & 10 daq & Ertaga nima qurishingiz \\
     \bottomrule
@@ -333,6 +333,27 @@
 \end{frame}
 
 % ----------------------------------------------------------------
+% [H1] KELTIRIB CHIQARISH: nega MinHash to'qnashuvi = Jaccard
+% ----------------------------------------------------------------
+\begin{frame}{Keltirib chiqarish: nega MinHash to'qnashuvi $=$ Jaccard?}
+  \textbf{1-qadam.} Tasodifiy permutatsiya $\pi$ ni olamiz; $h_\pi(A)$ ---
+  $A$ ning $\pi$ bo'yicha \textbf{eng kichik} elementi.
+  \pause
+  \textbf{2-qadam.} $h_\pi(A)=h_\pi(B)$ qachon? Faqat $A\cup B$ ning
+  $\pi$ bo'yicha minimal elementi \textbf{ikkalasida ham} ($A\cap B$ da)
+  bo'lsa.
+  \pause
+  \textbf{3-qadam.} $\pi$ tasodifiy bo'lgani uchun $A\cup B$ ning minimal
+  elementi teng ehtimol bilan istalgan element bo'lishi mumkin:
+  $$ P[h_\pi(A)=h_\pi(B)] = \frac{|A\cap B|}{|A\cup B|} = J(A,B) $$
+  \begin{tcolorbox}[okbox]
+    \small \textbf{Xulosa:} bitta MinHash --- Jaccard ning (shovqinli)
+    bahosi. $k$ ta mustaqil permutatsiya ishlatsak, teng MinHash ulushi
+    $J$ ga yaqinlashadi --- ko'p permutatsiya, aniqroq baho.
+  \end{tcolorbox}
+\end{frame}
+
+% ----------------------------------------------------------------
 % [I1] QO'LDA HISOB: Jaccard
 % ----------------------------------------------------------------
 \begin{frame}{Qo'lda hisob: ikki hujjatning Jaccard o'xshashligi}
@@ -364,18 +385,150 @@
   \end{columns}
 \end{frame}
 
+% ----------------------------------------------------------------
+% [J1] SIZNING VAZIFANGIZ: Jaccard
+% ----------------------------------------------------------------
+\begin{frame}{Sizning vazifangiz: Jaccard ni hisoblang}
+  \begin{tcolorbox}[warnbox,title=Savol --- 90 soniya]
+    \small
+    $A = \{$\texttt{nlp}, \texttt{juda}, \texttt{qiziq}$\}$\qquad
+    $C = \{$\texttt{python}, \texttt{juda}, \texttt{qulay}$\}$\\[4pt]
+    \textbf{\large $J(A,C) = ?$}
+  \end{tcolorbox}
+  \pause
+  \begin{tcolorbox}[okbox,title=Javob]
+    \small
+    $A \cap C = \{\texttt{juda}\} \Rightarrow |A\cap C| = 1$\\[2pt]
+    $A \cup C = \{\texttt{nlp}, \texttt{juda}, \texttt{qiziq}, \texttt{python}, \texttt{qulay}\}
+       \Rightarrow |A\cup C| = 5$\\[3pt]
+    $J(A,C) = \dfrac{1}{5} = \mathbf{0.2}$ --- faqat ``juda'' umumiy,
+    mavzu boshqa $\Rightarrow$ past o'xshashlik.
+  \end{tcolorbox}
+\end{frame}
+
+% ----------------------------------------------------------------
+% [K1] KOD <-> FORMULA: datasketch MinHash + LSH  [fragile]
+% ----------------------------------------------------------------
+\begin{frame}[fragile]{Kod $\leftrightarrow$ formula: \texttt{MinHash} va \texttt{MinHashLSH}}
+  \begin{columns}[T]
+    \begin{column}{0.56\textwidth}
+\begin{lstlisting}
+from datasketch import MinHash, MinHashLSH
+
+def to_minhash(tokens, num_perm=128):
+    m = MinHash(num_perm=num_perm)
+    for t in set(tokens):
+        m.update(t.encode("utf-8"))
+    return m
+
+lsh = MinHashLSH(threshold=0.5, num_perm=128)
+lsh.insert("D1", to_minhash(["nlp","juda","qiziq"]))
+lsh.insert("D2", to_minhash(["nlp","juda","foydali"]))
+
+q = to_minhash(["nlp","juda","yangi"])
+print(lsh.query(q))   # -> ['D1', 'D2']
+\end{lstlisting}
+    \end{column}
+    \begin{column}{0.40\textwidth}
+      \textbf{Kod $\to$ formula:}\\[3pt]
+      \footnotesize
+      \begin{tabular}{p{1.9cm}p{2.1cm}}
+        \toprule
+        Kod & Tushuncha \\
+        \midrule
+        \texttt{MinHash} & imzo $\approx J$ \\
+        \texttt{num\_perm} & permutatsiyalar \\
+        \texttt{threshold} & $b,r$ sozlash \\
+        \texttt{query} & savatni tekshir \\
+        \bottomrule
+      \end{tabular}
+      \vspace{4pt}
+      \begin{tcolorbox}[okbox,top=2pt,bottom=2pt]
+        \footnotesize
+        Ertangi P4 da \texttt{m04} ushbu API bilan LSH indeks quradi.
+      \end{tcolorbox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ----------------------------------------------------------------
+% [L1] CHEKLOVLAR: LSH taxminiy
+% ----------------------------------------------------------------
+\begin{frame}{LSH cheklovlari: taxminiylik narxi}
+  \begin{columns}[T]
+    \begin{column}{0.52\textwidth}
+      \begin{tcolorbox}[warnbox,title=Asosiy cheklovlar]
+        \small
+        \begin{itemize}\setlength\itemsep{2pt}
+          \item \textbf{False negative}: o'xshash juft boshqa savatga
+                tushib, topilmay qolishi mumkin.
+          \item \textbf{False positive}: o'xshamagan juft bir savatga
+                tushib, ortiqcha tekshiruv qo'shadi.
+          \item $b$ (band) va $r$ (qator) ni sozlash kerak ---
+                tezlik va aniqlik orasidagi murosa.
+        \end{itemize}
+      \end{tcolorbox}
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \footnotesize
+      Nomzod bo'lish ehtimoli (S-egri chiziq):
+      $$ P(s) = 1 - (1 - s^{r})^{b} $$
+      \footnotesize
+      $b,r$ ni shunday tanlaymizki, ``chegara'' o'xshashlikdan yuqori
+      juftlar deyarli har doim, pastlari deyarli hech qachon nomzod
+      bo'lmaydi.\\[3pt]
+      {\color{halfgray}Batafsil: ilova S2.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
 % ================================================================
-\section[Imlo tuzatish]{Imlo tuzatish: noisy channel va tahrir masofasi}
+\section[Noisy channel]{Imlo tuzatish: noisy channel modeli}
 % ================================================================
+
+% ----------------------------------------------------------------
+% [F2] INTUITSIYA: shovqinli kanal
+% ----------------------------------------------------------------
+\begin{frame}{Intuitsiya: imlo xatosi ``shovqinli kanal''dan o'tgan so'z}
+  \begin{center}
+  \begin{tikzpicture}[
+      box/.style={draw, fill=cnubluebg, rounded corners=3pt,
+                  minimum width=2.6cm, minimum height=0.9cm,
+                  font=\small, align=center},
+      ch/.style={draw, fill=orange!15, rounded corners=3pt,
+                 minimum width=3.0cm, minimum height=0.9cm,
+                 font=\small, align=center},
+      arr/.style={-{Stealth}, thick, color=cnublue}
+  ]
+    \node[box] (w) {to'g'ri so'z\\ $w=$\texttt{telefon}};
+    \node[ch, right=1.1cm of w] (c) {shovqinli kanal\\ (klaviatura, xato)};
+    \node[box, right=1.1cm of c] (x) {kuzatilgan\\ $x=$\texttt{telfon}};
+    \draw[arr] (w)--(c);
+    \draw[arr] (c)--(x);
+  \end{tikzpicture}
+  \end{center}
+  \vspace{4pt}
+  \begin{columns}[T]
+    \begin{column}{0.52\textwidth}
+      \small
+      Foydalanuvchi \textbf{to'g'ri} so'z $w$ ni o'ylagan, lekin kanal uni
+      \textbf{xato} $x$ ga aylantirgan. Biz faqat $x$ ni ko'ramiz va
+      ``orqaga'' --- eng ehtimoliy $w$ ni tiklamoqchimiz.
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \begin{tcolorbox}[okbox,top=2pt,bottom=2pt]
+        \footnotesize
+        Bu nutqni aniqlash, tarjima va OCR da ham ishlatiladigan umumiy
+        ``noisy channel'' g'oyasi --- bugun imlo tuzatishga qo'llaymiz.
+      \end{tcolorbox}
+    \end{column}
+  \end{columns}
+\end{frame}
 
 % ----------------------------------------------------------------
 % [G2] RASMIY TA'RIF: Noisy channel + BUNDA
 % ----------------------------------------------------------------
-\begin{frame}{Noisy channel modeli: eng ehtimoliy to'g'ri so'z}
-  \textbf{Intuitsiya:} foydalanuvchi to'g'ri so'z $w$ ni o'ylagan, lekin
-  ``shovqinli kanal'' (klaviatura, e'tiborsizlik) uni xato $x$ ga aylantirgan.
-  Biz $x$ ni ko'rib, $w$ ni tiklamoqchimiz.
-  \vspace{3pt}
+\begin{frame}{Noisy channel modeli: rasmiy ta'rif}
   \begin{tcolorbox}[defbox,title=Ta'rif: noisy channel imlo tuzatish]
     \vspace{-0.4em}
     $$ \hat{w} = \arg\max_{w \in V} P(w \mid x)
@@ -389,7 +542,27 @@
   \vspace{4pt}
   \footnotesize
   Nomzodlar $V$ --- $x$ ga \textbf{tahrir masofasi kichik} so'zlar
-  (odatda $\le 2$). Bu masofani keyin DP bilan aniq hisoblaymiz.
+  (odatda $\le 2$). Bu masofani keyingi blokda DP bilan aniq hisoblaymiz.
+\end{frame}
+
+% ----------------------------------------------------------------
+% [H2] KELTIRIB CHIQARISH: Bayes
+% ----------------------------------------------------------------
+\begin{frame}{Keltirib chiqarish: formula qayerdan keladi?}
+  \textbf{1-qadam.} Bizga $P(w\mid x)$ kerak --- Bayes teoremi:
+  $$ P(w \mid x) = \frac{P(x \mid w)\,P(w)}{P(x)} $$
+  \pause
+  \textbf{2-qadam.} Biz $w$ bo'yicha maksimum qidiramiz; $P(x)$ esa
+  \textbf{barcha} $w$ uchun bir xil (kuzatilgan $x$ o'zgarmaydi):
+  $$ \hat{w} = \arg\max_w \frac{P(x\mid w)P(w)}{P(x)}
+            = \arg\max_w P(x\mid w)P(w) $$
+  \pause
+  \begin{tcolorbox}[okbox]
+    \small \textbf{Xulosa:} ikki bilim manbasini birlashtiramiz ---
+    \textbf{xato modeli} $P(x{\mid}w)$ (qanday xato qilinadi) va
+    \textbf{til modeli} $P(w)$ (qaysi so'z keng tarqalgan). Yolg'iz
+    biri yetarli emas.
+  \end{tcolorbox}
 \end{frame}
 
 % ----------------------------------------------------------------
@@ -427,11 +600,148 @@
 \end{frame}
 
 % ----------------------------------------------------------------
+% [J2] SIZNING VAZIFANGIZ: noisy channel
+% ----------------------------------------------------------------
+\begin{frame}{Sizning vazifangiz: ``maktap'' ni tuzating}
+  \begin{tcolorbox}[warnbox,title=Savol --- 2 daqiqa]
+    \small
+    $x = $\texttt{"maktap"}. Nomzodlar:
+    \begin{center}\footnotesize
+    \begin{tabular}{lcc}
+      \toprule
+      $w$ & $P(w)$ & $P(x{\mid}w)$ \\
+      \midrule
+      \texttt{maktab} & 0.70 & 0.20 \\
+      \texttt{maktub} & 0.20 & 0.05 \\
+      \bottomrule
+    \end{tabular}
+    \end{center}
+    \textbf{Qaysi nomzod g'olib? Ko'paytmalarni hisoblang.}
+  \end{tcolorbox}
+  \pause
+  \begin{tcolorbox}[okbox,title=Javob]
+    \small
+    \texttt{maktab}: $0.70 \times 0.20 = \mathbf{0.14}$\qquad
+    \texttt{maktub}: $0.20 \times 0.05 = 0.01$\\[3pt]
+    $\hat{w} = \texttt{maktab}$ ($0.14 > 0.01$) --- keng tarqalgan so'z
+    yana g'olib.
+  \end{tcolorbox}
+\end{frame}
+
+% ----------------------------------------------------------------
+% [K2] KOD <-> FORMULA: correct()  [fragile]
+% ----------------------------------------------------------------
+\begin{frame}[fragile]{Kod $\leftrightarrow$ formula: \texttt{correct()} funksiyasi}
+  \begin{columns}[T]
+    \begin{column}{0.56\textwidth}
+\begin{lstlisting}
+def correct(x, candidates, P_w, P_err):
+    # candidates: tahrir masofasi <= 2 so'zlar
+    best, best_score = x, 0.0
+    for w in candidates:
+        # noisy channel: P(x|w) * P(w)
+        score = P_err(x, w) * P_w(w)
+        if score > best_score:
+            best, best_score = w, score
+    return best
+
+correct("kitop", ["kitob", "kotib"],
+        P_w, P_err)        # -> "kitob"
+\end{lstlisting}
+    \end{column}
+    \begin{column}{0.40\textwidth}
+      \textbf{Kod $\to$ formula:}\\[3pt]
+      \footnotesize
+      \begin{tabular}{p{1.9cm}p{2.1cm}}
+        \toprule
+        Kod & Formula \\
+        \midrule
+        \texttt{P\_err(x,w)} & $P(x{\mid}w)$ \\
+        \texttt{P\_w(w)} & $P(w)$ \\
+        \texttt{score=...} & ko'paytma \\
+        \texttt{max score} & $\arg\max$ \\
+        \bottomrule
+      \end{tabular}
+      \vspace{4pt}
+      \begin{tcolorbox}[okbox,top=2pt,bottom=2pt]
+        \footnotesize
+        Ertangi P4 da \texttt{m04.correct()} aynan shu tartiblashni
+        bajaradi.
+      \end{tcolorbox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ----------------------------------------------------------------
+% [L2] CHEKLOVLAR: nomzod generatsiyasi
+% ----------------------------------------------------------------
+\begin{frame}{Noisy channel cheklovlari va tipik xatolar}
+  \begin{columns}[T]
+    \begin{column}{0.50\textwidth}
+      \begin{tcolorbox}[warnbox,title=Cheklovlar]
+        \small
+        \begin{itemize}\setlength\itemsep{2pt}
+          \item Faqat tahrir masofasi $=1$ nomzodlarni olsak,
+                masofa $2$ xatolarni \textbf{o'tkazib} yuboramiz.
+          \item Masofa $\le 2$ nomzodlar soni juda katta ---
+                hammasini baholash sekin.
+          \item $P(x{\mid}w)$ ni aniq baholash uchun \textbf{xatolar
+                korpusi} kerak; bo'lmasa soddalashtiriladi.
+        \end{itemize}
+      \end{tcolorbox}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \begin{tcolorbox}[warnbox,title=Tipik xato]
+        \small
+        $P(w)$ ni \textbf{e'tibordan} chiqarish: faqat $P(x{\mid}w)$ ga
+        qarab tuzatsak, kamdan-kam uchraydigan so'z ham g'olib chiqishi
+        mumkin.
+      \end{tcolorbox}
+      \vspace{3pt}
+      \footnotesize\color{halfgray}
+      Tezlashtirish: nomzodlarni lug'at-trie yoki BK-tree bilan
+      tez topish, keyin tartiblash.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ================================================================
+\section[Tahrir masofasi]{Tahrir masofasi: Levenshtein va DP}
+% ================================================================
+
+% ----------------------------------------------------------------
+% [F3] INTUITSIYA: edit distance = minimal amallar
+% ----------------------------------------------------------------
+\begin{frame}{Intuitsiya: bir so'zni boshqasiga ``arzon'' aylantirish}
+  \begin{columns}[T]
+    \begin{column}{0.52\textwidth}
+      \small
+      \texttt{"kitob"} dan \texttt{"kitob"} ga --- $0$ amal.\\[3pt]
+      \texttt{"kitop"} dan \texttt{"kitob"} ga --- $1$ amal
+      (\texttt{p}$\to$\texttt{b} almashtirish).\\[3pt]
+      \texttt{"kitb"} dan \texttt{"kitob"} ga --- $1$ amal
+      (\texttt{o} qo'shish).\\[6pt]
+      \textbf{Tahrir masofasi} --- shu \textbf{minimal} amallar soni.
+      Uch amal: qo'shish, o'chirish, almashtirish.
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \begin{tcolorbox}[okbox,top=2pt,bottom=2pt]
+        \footnotesize
+        Masofa kichik bo'lsa --- so'zlar yaqin (imlo xatosi ehtimoli
+        yuqori). Noisy channel nomzodlari aynan shu yaqin so'zlar.
+      \end{tcolorbox}
+      \vspace{4pt}
+      \footnotesize\color{halfgray}
+      Naive yondashuv --- barcha amal ketma-ketliklarini sinash ---
+      eksponensial. DP buni $O(mn)$ ga tushiradi.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ----------------------------------------------------------------
 % [G3] RASMIY TA'RIF: Levenshtein + DP rekurrensiya + BUNDA
 % ----------------------------------------------------------------
 \begin{frame}{Tahrir masofasi (Levenshtein): rasmiy ta'rif}
-  \textbf{Intuitsiya:} bir so'zni boshqasiga aylantirish uchun zarur
-  \textbf{minimal} amallar soni. Uch amal: qo'shish, o'chirish, almashtirish.
   \begin{tcolorbox}[defbox,title=Ta'rif: DP rekurrensiyasi]
     \vspace{-0.3em}
     $$ D[i][j] =
@@ -505,7 +815,7 @@
       \begin{tcolorbox}[okbox,title=Ikkinchi tekshiruv,top=2pt,bottom=2pt]
         \footnotesize
         $\text{edit}(\texttt{dastur},\texttt{dastir}) = \mathbf{1}$
-        (\texttt{u}$\to$\texttt{i} almashtirish, 5-belgi).
+        (\texttt{u}$\to$\texttt{i} almashtirish, 5-belgi). To'liq jadval: ilova S1.
       \end{tcolorbox}
       \vspace{2pt}
       \footnotesize\color{halfgray}
@@ -590,18 +900,18 @@ edit_distance("qo'l", "ko'l")      # -> 1
 % ----------------------------------------------------------------
 % [L3] CHEKLOVLAR VA TIPIK XATOLAR
 % ----------------------------------------------------------------
-\begin{frame}{Cheklovlar va tipik xatolar}
+\begin{frame}{Levenshtein cheklovlari va tipik xatolar}
   \begin{columns}[T]
     \begin{column}{0.50\textwidth}
       \begin{tcolorbox}[warnbox,title=Usulning cheklovlari]
         \small
         \begin{itemize}\setlength\itemsep{2pt}
-          \item Levenshtein \textbf{ma'noni} bilmaydi:
+          \item Masofa \textbf{ma'noni} bilmaydi:
                 \texttt{ot} va \texttt{it} masofasi 1, lekin ma'no boshqa.
-          \item Nomzodlar soni masofa $\le 2$ da ham katta ---
-                hammasini tekshirish sekin.
-          \item LSH \textbf{taxminiy}: o'xshash juft boshqa savatga
-                tushib, e'tibordan chetda qolishi mumkin (false negative).
+          \item Barcha juftga $O(mn)$ --- katta lug'atda nomzodlarni
+                avval filtrlash kerak.
+          \item Almashtirish narxi har doim 1 --- klaviatura yaqinligi
+                (\texttt{q}/\texttt{w}) hisobga olinmaydi.
         \end{itemize}
       \end{tcolorbox}
     \end{column}
@@ -614,16 +924,44 @@ edit_distance("qo'l", "ko'l")      # -> 1
         satrga masofa noto'g'ri ($0$) bo'lib, butun jadval buziladi.\\[4pt]
         \normalsize Asos qatorlar --- DP ning poydevori.
       \end{tcolorbox}
-      \vspace{3pt}
-      \footnotesize\color{halfgray}
-      Tezlashtirish: nomzodlarni avval LSH/lug'at-trie bilan
-      filtrlash, keyin aniq masofani hisoblash.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ================================================================
+\section[Arxitektura]{Avtomatik tuzatish tizimi}
+% ================================================================
+
+% ----------------------------------------------------------------
+% [F4] INTUITSIYA: tizimni yaxlit ko'rish
+% ----------------------------------------------------------------
+\begin{frame}{Intuitsiya: alohida bloklar bitta tizimga birlashadi}
+  \begin{columns}[T]
+    \begin{column}{0.52\textwidth}
+      \small
+      Bugun uch ``g'isht'' o'rgandik:
+      \begin{itemize}\setlength\itemsep{2pt}
+        \item \textbf{Tahrir masofasi} --- nomzodlarni topadi,
+        \item \textbf{Noisy channel} --- nomzodlarni tartiblaydi,
+        \item \textbf{LSH} --- katta korpusda tez qidiradi.
+      \end{itemize}
+      \vspace{4pt}
+      Endi ularni \textbf{bitta quvur}ga ulaymiz: xato so'zdan tuzatilgan
+      so'zgacha, va so'rovdan o'xshash hujjatgacha.
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \begin{tcolorbox}[okbox,top=2pt,bottom=2pt]
+        \footnotesize
+        Yaxshi tizim --- har blok alohida tekshiriladigan, almashtiriladigan
+        komponent. Ertaga P4 da \texttt{m04} shu komponentlarni birga
+        quradi.
+      \end{tcolorbox}
     \end{column}
   \end{columns}
 \end{frame}
 
 % ----------------------------------------------------------------
-% [G4] SUBITEM 4: avtomatik tuzatish tizimi arxitekturasi
+% [G4] RASMIY: tizim komponentlari va oqim
 % ----------------------------------------------------------------
 \begin{frame}{Avtomatik tuzatish tizimi: komponentlar va oqim}
   \begin{center}
@@ -668,6 +1006,58 @@ edit_distance("qo'l", "ko'l")      # -> 1
       \end{tcolorbox}
     \end{column}
   \end{columns}
+\end{frame}
+
+% ----------------------------------------------------------------
+% [I4] QO'LDA HISOB: ``telfon'' so'zining tizim bo'ylab yo'li
+% ----------------------------------------------------------------
+\begin{frame}{Qo'lda misol: ``telfon'' tizim bo'ylab qanday tuzatiladi?}
+  \begin{center}\small
+  \begin{tabular}{cll}
+    \toprule
+    \# & Komponent & Natija \\
+    \midrule
+    1 & Normallashtirish & \texttt{"telfon"} (kichik harf, apostrofsiz) \\
+    2 & Lug'atda bormi? & \alert{Yo'q} $\Rightarrow$ tuzatish kerak \\
+    3 & Nomzodlar (edit $\le 2$) & \{\texttt{telefon}, \texttt{telpon}, \texttt{telfor}\} \\
+    4 & Noisy channel tartiblash &
+      \begin{tabular}{@{}l@{}}
+        \texttt{telefon}: $P(w){\cdot}P(x{\mid}w)=0.9{\times}0.3=\mathbf{0.27}$\\
+        \texttt{telpon}: $0.05{\times}0.2=0.010$
+      \end{tabular} \\
+    5 & Chiqish & \texttt{"telefon"} \quad(\textbf{eng yuqori ko'paytma}) \\
+    \bottomrule
+  \end{tabular}
+  \end{center}
+  \vspace{4pt}
+  \begin{tcolorbox}[okbox,top=2pt,bottom=2pt]
+    \footnotesize
+    Tahrir masofasi (3-qadam) \textbf{nomzodlarni} berdi; noisy channel
+    (4-qadam) ular orasidan \textbf{eng ehtimoliysini} tanladi. Ikki blok
+    birgalikda ishlaydi.
+  \end{tcolorbox}
+\end{frame}
+
+% ----------------------------------------------------------------
+% [J4] SIZNING VAZIFANGIZ: tizim bo'ylab kuzating
+% ----------------------------------------------------------------
+\begin{frame}{Sizning vazifangiz: ``kitb'' qaysi bloklardan o'tadi?}
+  \begin{tcolorbox}[warnbox,title=Savol --- 90 soniya]
+    \small
+    Foydalanuvchi \texttt{"kitb"} deb yozdi (lug'atda yo'q).
+    Tizimning qaysi 4 bloki ishga tushadi va natija nima?\\[3pt]
+    \footnotesize Maslahat: $\text{edit}(\texttt{kitb},\texttt{kitob})=1$.
+  \end{tcolorbox}
+  \pause
+  \begin{tcolorbox}[okbox,title=Javob]
+    \footnotesize
+    \textbf{1)} Normallashtirish $\to$ \texttt{kitb}. \quad
+    \textbf{2)} Lug'atda yo'q $\Rightarrow$ tuzatish.\\
+    \textbf{3)} Nomzodlar (edit $\le 2$): \{\texttt{kitob}, \texttt{kita}, \ldots\}
+    (\texttt{kitob} --- \texttt{o} qo'shish, masofa 1).\\
+    \textbf{4)} Noisy channel: \texttt{kitob} eng keng tarqalgan $\Rightarrow$
+    chiqish \texttt{"kitob"}.
+  \end{tcolorbox}
 \end{frame}
 
 % ================================================================
@@ -766,12 +1156,13 @@ edit_distance("qo'l", "ko'l")      # -> 1
 % [P] MAQSADLAR BAJARILDI
 % ----------------------------------------------------------------
 \begin{frame}{Bugungi maqsadlar bajarildi}
-  \begin{enumerate}\setlength\itemsep{8pt}
+  \begin{enumerate}\setlength\itemsep{6pt}
     \item \bajarildi \textbf{Keltirib chiqardik:} Levenshtein DP
-          rekurrensiyasi --- uch amal (qo'shish, o'chirish, almashtirish).
+          rekurrensiyasi va MinHash--Jaccard bog'lanishi
+          ($P[\text{minhash teng}]=J$).
     \item \bajarildi \textbf{Hisobladik:}
           $\text{edit}(\texttt{qo'l},\texttt{ko'l})=1$ DP jadval bilan
-          ([I3]-slayd).
+          ([I3]-slayd); $J=0.5$, $J=0.2$.
     \item \bajarildi \textbf{Qo'lladik:} noisy channel ---
           \texttt{kitop} $\to$ \texttt{kitob} ($0.080 > 0.002$).
     \item \bajarildi \textbf{Taqqosladik:} aniq k-NN va taxminiy LSH;
