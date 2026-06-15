@@ -1,0 +1,490 @@
+================================================================================
+  NLP KASBIY MALAKA OSHIRISH KURSI — REPOZITORIY UMUMIY XULOSASI
+  (To'liq va batafsil tahlil)
+================================================================================
+
+Tayyorlandi:        2026-06-15
+Tahlil qilingan joy: c:\Users\khusn\Downloads\NLP\uznlp_course
+Joriy branch:        feat/help_to_improve
+Asosiy branch:       master
+Jami commitlar:      24
+Holat:               ishchi daraxt toza (nothing to commit)
+
+
+================================================================================
+  0. UMUMIY MOHIYAT — BU NIMA?
+================================================================================
+
+Bu repozitoriy — DASTURIY MAHSULOT EMAS, balki bir O'QUV KURSINING TO'LIQ
+MATERIALLARINI ISHLAB CHIQARISH LOYIHASI. Ya'ni bu yerda kod yozilmaydi,
+balki ma'ruzalar (slaydlar), amaliyot daftarlari (notebooklar), loyiha
+hujjatlari va sifat nazorati hisobotlari ishlab chiqariladi.
+
+Maqsad: o'zbek tilida (lotin yozuvida) 4 haftalik intensiv "Tabiiy tilni
+qayta ishlash" (NLP — Natural Language Processing) kursining barcha o'quv
+materiallarini yaratish.
+
+  - Kurs nomi:    "Tabiiy tilni qayta ishlash (NLP)"
+  - Shartnoma:    VMQ 425-son, 64-son loyiha (rasmiy davlat shartnomasi)
+  - Ijrochi:      Atadjanov Ibragim Ravshonbekovich
+  - Muddat:       2026-yil 15-iyun – 10-iyul
+  - Tinglovchi soatlari: 64 soat (32 ma'ruza + 32 amaliyot) + 2 soat
+                  orientatsiya = jami 66 soat aloqa vaqti
+
+Bu loyihaning o'ziga xosligi: u Claude Code (AI agent) yordamida ishlab
+chiqarish uchun maxsus tuzilgan. Repozitoriyda "konstitutsiya" (CLAUDE.md),
+majburiy ishlab chiqarish qoidalari (skills), bosqichma-bosqich promptlar
+(PROMPTS.md) va qat'iy sifat darvozalari mavjud.
+
+
+================================================================================
+  1. KURSNING ASOSIY FAKTLARI VA TUZILISHI
+================================================================================
+
+AUDITORIYA (juda muhim qoida):
+  - O'zbekcha matnlarda tinglovchilar "TINGLOVCHI" / "TINGLOVCHILAR" deyiladi.
+  - Inglizcha matnlarda — "participant(s)".
+  - QAT'IY TAQIQLANGAN so'zlar (har qanday materialda): "professor",
+    "professor-o'qituvchi", "talaba", "student", va auditoriya ma'nosida
+    "o'qituvchi". ("o'qituvchi" so'zi faqat lingvistik misol sifatida —
+    masalan morfologiya namunasi "o'qi-tuv-chi-lar-imiz-dan" — ishlatilishi
+    mumkin.)
+  - Sabab: kurs sohaga bog'liq bo'lmagan, neytral kasbiy malaka oshirish
+    sifatida o'qilishi kerak.
+
+DARS JADVALI:
+  - Dush/Sesh/Pay/Juma — 16 ta o'quv kuni.
+  - Har kuni:
+      * Amaliyot sessiyasi: 09:30–10:50 (I.R. Atadjanov)
+      * Ma'ruza:           11:00–12:20 (A.A. Abdulali)
+  - Chorshanbalar — loyiha bosqichi (milestone) kunlari (asinxron; qisqacha
+    topshiriq + fikr-mulohaza).
+
+DARS JUFTLASH MANTIG'I (tasdiqlangan):
+  - 1-kun ertalabi = ORIENTATSIYA (muhit sozlash, hisoblar, resurslar) —
+    bu kontent ma'ruzasi EMAS.
+  - 1-kun = L1 ma'ruza.
+  - N-kun ertalabi = P(N-1) amaliyoti (N = 2..16).
+  - N-kun ma'ruzasi = L(N).
+  - Ya'ni ma'ruza HAR DOIM o'ziga mos amaliyotdan OLDIN keladi (ertangi
+    amaliyotga tayyorlaydi).
+  - P16 (FastAPI/Docker) = M4 milestone (8-iyul).
+
+HAFTALAR MAVZULARI (kurs yoyi):
+  - 1-hafta (1–4 kun):  Klassik pipeline + siyrak vektorlar (BoW, TF-IDF)
+  - 2-hafta (5–8 kun):  Statistik modellar + neyron embeddinglar (Word2Vec, LSTM)
+  - 3-hafta (9–12 kun): Diqqat mexanizmi + transformerlar (BERT, NER, NMT)
+  - 4-hafta (13–16 kun): Fine-tuning, RAG, agentlar, deployment
+
+
+================================================================================
+  2. KAPSTONE LOYIHA — KURSNING O'ZAGI
+================================================================================
+
+Har bir tinglovchi 16 kun davomida YAGONA, KUMULYATIV loyiha quradi:
+  >>> "O'ZBEK-TILI HUJJAT YORDAMCHISI" (Uzbek Document Assistant) <<<
+
+Har bir amaliyot sessiyasi bu loyihaga BITTA MODUL qo'shadi. Chorshanba
+milestonelari modullarni birlashtiradi. Oxirgi kun esa hammasini deploy
+qiladi.
+
+MODULLAR ZANJIRI (16 ta modul, har biri bir kunda quriladi):
+
+  Modul | Nomi                    | Kun  | Vazifa
+  ------|-------------------------|------|----------------------------------
+  m01   | TextPreprocessor        | P1   | Matn tozalash + tokenizatsiya + stemming
+  m02   | SentimentClassifier     | P2   | TF-IDF asosida hissiyot tahlili
+  m03   | PretrainedEmbedder      | P3   | So'z o'xshashligi va embedding
+  m04   | SpellLSHRetriever       | P4   | Imlo tuzatish + LSH qidiruv
+  m05   | Autocomplete            | P5   | N-gram so'z to'ldirish
+  m05b  | POSTagger               | P5   | HMM/Viterbi (faqat pedagogik)
+  m06   | CustomWord2Vec          | P6   | O'zbek korpusida noldan CBOW
+  m07   | RNNClassifier           | P7   | SimpleRNN matn tasniflash
+  m08   | GRULSTMClassifier       | P8   | GRU/LSTM taqqoslash
+  m09   | TextGenerator           | P9   | Char-level LSTM (pedagogik)
+  m10   | NERTagger               | P10  | Bi-LSTM IOB2 NER
+  m11   | Seq2SeqTranslator       | P11  | LSTM + Attention NMT (pedagogik)
+  m12   | TransformerSummarizer   | P12  | Mini Transformer xulosa
+  m13   | FineTunedClassifier     | P13  | BERT fine-tuning (sentiment)
+  m14   | RAGEngine               | P14  | FAISS + LLM RAG
+  m15   | DocumentAssistantAgent  | P15  | LangChain ReAct agent (hammasini ulaydi)
+  app.py| SentimentAPI            | M4   | FastAPI deployment
+
+PIPELINE OQIMI (yakuniy mahsulot qanday ishlaydi):
+  Foydalanuvchi so'rovi (o'zbekcha)
+    -> TextPreprocessor -> SpellLSHRetriever (imlo + qidiruv)
+       -> FineTunedClassifier -> hissiyot (ijobiy/salbiy)
+       -> NERTagger          -> shaxs/joy/tashkilot
+       -> RAGEngine          -> tegishli hujjat parchalari
+       -> DocumentAssistantAgent (ReAct) -> yakuniy javob
+          -> FastAPI (SentimentAPI) -> JSON javob
+
+MUHIM QOIDA: har bir modul `capstone/contracts.py` dagi qat'iy interfeysga
+(funksiya imzolari, type hints) MOS bo'lishi shart. contracts.py da
+implementatsiya YO'Q — faqat imzolar va docstringlar. Bu 16 ta modulning
+keyingi haftalarda bir-biriga toza ulanishini kafolatlaydi.
+
+Modullarning "consumed_by" bog'lanishlari tekshirilgan: har bir keyin
+ishlatiladigan modul oldin quriladi (m01 eng ko'p — 9 ta keyingi modul
+tomonidan ishlatiladi).
+
+
+================================================================================
+  3. REPOZITORIY TUZILMASI (fayl-fayl)
+================================================================================
+
+ILDIZ HUJJATLARI (loyiha boshqaruvi):
+  CLAUDE.md          - Loyiha "konstitutsiyasi". Claude Code har sessiya
+                       boshida o'qiydi. Jadval, auditoriya qoidalari, repo
+                       tartibi, ish intizomi, sifat darvozalari.
+  README.md          - Loyiha umumiy ko'rinishi (inglizcha + o'zbekcha xulosa).
+  CONTRIBUTING.md    - Branch nomlash, PR oqimi, nbstripout, sirlar qoidasi,
+                       terminologiya tekshiruvi, commit format.
+  ONBOARDING.md      - Yangi hamkasb uchun tezkor boshlash qo'llanmasi.
+  PROMPTS.md         - Claude Code uchun bosqichma-bosqich promptlar ketma-
+                       ketligi (Stage 0 dan Final Audit gacha).
+  LICENSES.md        - Datasetlar litsenziya registri (har bir korpus uchun
+                       qator; CONFIRMED / EDUCATIONAL-USE / NOT USED holatlar).
+  requirements.txt   - Hissa qo'shuvchi vositalari (nbstripout va h.k.).
+  .gitignore         - Sirlar, LaTeX artefaktlari, katta data papkalari.
+  .github/pull_request_template.md - CLAUDE.md sifat darvozalarini aks
+                       ettiruvchi PR shabloni.
+
+.claude/skills/ (MAJBURIY ishlab chiqarish qoidalari — har artefaktdan oldin
+                 o'qiladi):
+  uzbek-course-style/SKILL.md  - Terminologiya, lotin yozuvi, gap-tuzilishi,
+                                 sentence-case, "ijobiy/salbiy" qulflangan
+                                 yorliqlar, assert/xato xabarlari uslubi.
+  lecture-beamer/SKILL.md      - Slayd vizual identiteti, [A]-[S] pedagogik
+                                 arxetiplar skeleti, kompilyatsiya darvozalari.
+    assets/00_marquza_shabloni.tex - Ma'ruza shabloni (preambula).
+  practice-notebook/SKILL.md   - 80 daqiqalik loyiha arxitekturasi,
+                                 periferiya/o'zak ajratish, PRIMM, so'nuvchi
+                                 tayanch, assertlar, checkpointlar.
+  kaggle-hardware/SKILL.md     - Kaggle bepul rejim cheklovlari (16 GB VRAM),
+                                 batch hajmi, data hajmi cheklari.
+
+course/ (asosiy o'quv materiallari):
+  course_map.yaml    - YAGONA HAQIQAT MANBASI. 16 kun + 4 milestone, har
+                       biri to'liq ta'riflangan (1105 qator).
+  lectures/
+    d01_nlp_asoslari.tex (1754 qator) + .pdf  - L1 ma'ruza
+    d02_klassik_tasnif.tex (1491 qator)       - L2 ma'ruza (PDF hali yo'q)
+  practices/
+    d02_p1_preprocessing.ipynb (44 katak)         - P1 amaliyot (tinglovchi)
+    d02_p1_preprocessing_SOLUTIONS.ipynb (44 katak) - P1 yechimlar
+    d02_checkpoints/uz_news_mini.txt              - offline fallback data
+  qa/ (sifat nazorati hisobotlari):
+    d01_qa.md, d01_qa_check.py  - 1-kun orientatsiya QA
+    L1_report.md                - L1 ma'ruza QA
+    L2_report.md                - L2 ma'ruza QA
+    P1_report.md                - P1 amaliyot QA
+    L1_qa_check.py              - QA avtomatlashtirish skripti
+
+capstone/ (kapstone loyiha):
+  SPEC.md            - Loyiha shartnomasi (tinglovchiga qaratilgan, o'zbekcha).
+  contracts.py (614 qator) - 16 ta modul sinfi + SentimentAPI imzolari.
+  modules/
+    __init__.py
+    m01_text_preprocessor.py   - YAGONA TO'LIQ IMPLEMENTATSIYA QILINGAN modul.
+
+day1_orientation/ (1-kun materiallari):
+  d01_kirish.tex (484 qator) + .pdf  - Qisqa kirish slaydlari (~16 slayd)
+  d01_orientatsiya.ipynb (20 katak)  - Muhit tekshiruv daftari
+  HISOB_YARATISH.md                  - Hisob ochish qo'llanmasi (Kaggle,
+                                       GitHub, Hugging Face)
+
+assessments/ (baholash):
+  gen_pre_course.py  - Kurs oldi diagnostik test generatori skripti.
+  pre_course.docx    - 14 savol (kodlashsiz).
+  pre_course.xlsx    - Javoblar kaliti tushuntirishlar bilan.
+
+docs/
+  official_themes.docx - Rasmiy mavzular hujjati.
+
+
+================================================================================
+  4. ISHLAB CHIQARISH INTIZOMI VA SIFAT DARVOZALARI
+================================================================================
+
+ASOSIY PRINSIP: "BIR KUNDA BITTA". To'liq kun jufti (ma'ruza + amaliyot)
+ishlab chiqariladi, barcha sifat darvozalaridan o'tkaziladi, QA hisoboti
+yoziladi, KEYIN TO'XTAB inson tasdig'ini kutiladi. Hech qachon oldinga
+to'plab ketilmaydi.
+
+ISH SIKLI:
+  Ishlab chiqarish -> QA darvozalari -> qa/dNN_report.md -> Inson tasdiqlaydi
+  -> Keyingi kun
+
+course_map.yaml BIRINCHI: qatori tasdiqlanmagan kun uchun hech qanday
+artefakt ishlab chiqarilmaydi.
+
+SIFAT DARVOZALARI (har kun taqdim etishdan oldin o'tishi shart):
+
+  MA'RUZA (lecture-beamer):
+    - pdflatex ikki marta, nol xato; >10pt Overfull \hbox ogohlantirish yo'q.
+    - Slayd soni 22–28 (\appendix dan tashqari) — L1/L2 da istisno ruxsat
+      berilgan (43–48 slayd, chunki to'rt tsiklli to'liq mavzular).
+    - Barcha arxetiplar [A]-[S] mavjud.
+    - KOMPILYATSIYA POLITIKASI: mahalliy TeX o'rnatish yo'q -> kompilyatsiya
+      darvozasi Overleaf (pdfLaTeX) ga KECHIKTIRILGAN. Boshqa barcha
+      darvozalar mahalliy tekshiriladi.
+
+  AMALIYOT DAFTARI (practice-notebook):
+    - Yaroqli JSON (nbformat validatsiya).
+    - OFFLINE_FALLBACK = True bilan yuqoridan pastgacha bajariladi.
+    - Har bir assert o'tadi.
+    - Hech bir katak > 16 GB VRAM talab qilmaydi.
+    - Har bo'sh qoldirilgan ("blanked") joy uchun juft assert bo'lishi shart.
+    - Yechimlar daftari (_SOLUTIONS.ipynb) ham toza bajarilishi shart.
+
+  TERMINOLOGIYA:
+    - grep -rinE "professor|talaba|student|o'qituvchi" <file> -> hech narsa
+      qaytarmasligi kerak (har bir moslik lingvistik misol bo'lishi shart).
+
+  KUZATILUVCHANLIK (traceability):
+    - Sonli natijani tekshiruvchi har bir amaliyot asserti, o'sha son qo'lda
+      hisoblangan ma'ruza slaydiga havola qilishi shart:
+      # Ma'ruza [I]-slayd bilan solishtiring
+
+GIT: har artefakt uchun bitta commit, format:
+  dayNN: lecture|practice|qa|infra — qisqa tavsif
+
+
+================================================================================
+  5. PEDAGOGIK ARXITEKTURA (bu kursni o'ziga xos qiladigan narsa)
+================================================================================
+
+MA'RUZA ARXETIPLARI [A]-[S] (har ma'ruza shu skeletni to'liq tutadi):
+  [A] sarlavha -> [B] takrorlash viktorinasi -> [C] o'lchanadigan maqsadlar
+  -> [D] vaqt-byudjet rejasi -> [E] muammodan boshlash (avval sodda yechim
+  qayerda qulashini ko'rsat) -> har nazariya bo'limi uchun:
+    [F] intuitsiya (rasm, formulasiz)
+    [G] rasmiy ta'rif (defbox + majburiy \bunda{} belgi kaliti)
+    [H] qadam-baqadam keltirib chiqarish (<=4 qadam/slayd)
+    [I] kichik o'zbek korpusida qo'lda misol (aqlda hisoblanadigan sonlar)
+    [J] "Sizning vazifangiz" (savol -> \pause -> javob)
+    [K] kod<->formula ko'prigi
+    [L] cheklovlar + bitta haqiqiy xato va uning yechimi
+  -> [M] o'zbek tili masalalari slaydi (HAR ma'ruzada majburiy)
+  -> [N] sintez taqqoslov jadvali -> [O] bitta asosiy maqola + muhokama
+  savoli -> [P] [C] maqsadlariga \bajarildi belgisi -> [Q] ertangi
+  amaliyotga ko'prik (TikZ pipeline) -> [R] adabiyotlar -> [S] \appendix
+  zaxira slaydlar.
+
+AMALIYOT DAFTARI TUZILMASI (80 daqiqa, har sessiya bir xil usul):
+  "yaxlitni ishga tushir -> berilganini tekshir -> o'zakni so'nuvchi tayanch
+   bilan o'rgat -> o'zinikiga ulash -> savol bilan yakunla"
+
+  PERIFERIYA/O'ZAK AJRATISH:
+    - Periferiya: bugungi o'rganish maqsadi emas (masalan web scraping, PDF).
+      To'liq, ishlaydigan, izohli kod sifatida beriladi (PRIMM usuli:
+      Predict-Run-Investigate-Modify).
+    - O'zak: bugungi tushuncha (masalan BoW, TF-IDF). So'nuvchi tayanch
+      (faded scaffolding) bilan beriladi — 3 bosqich:
+        * Namuna (I do): instruktor uslubidagi misol + assert.
+        * Birgalikda (we do): faqat muhim qatorlar bo'sh qoldiriladi
+          (# === SIZNING KODINGIZ ===) + darhol o'z-o'zini tekshiruvchi assert.
+        * Mustaqil (you do): o'z korpusiga qo'llash, tayanchsiz.
+
+  STATUS-HIMOYA QOIDALARI (bu auditoriya ommaviy qiynalmaydi):
+    - Barcha to'g'rilik fikr-mulohazasi assertlar orqali — hech qachon
+      "qo'l ko'taring" emas.
+    - Har bo'lim chegarasidan keyin checkpoint katak (saqlangan oraliq
+      natijani yuklaydi — orqada qolgan tinglovchi darhol qo'shiladi).
+
+KUZATILUVCHANLIK MEXANIZMI: har bir hand_example ma'ruza [I] slaydi va
+amaliyotning birinchi asserti tomonidan BIR XIL SONLAR bilan ishlatiladi.
+Masalan L1 [I3]: TF-IDF('nlp', D1)=0.405, TF-IDF('qiziq', D1)=1.099 ->
+P1 birinchi assert shularni tekshiradi.
+
+
+================================================================================
+  6. KAGGLE HARDWARE CHEKLOVLARI
+================================================================================
+
+Barcha amaliyotlar Kaggle Notebooks BEPUL rejimida ishlaydi:
+  - Bitta NVIDIA T4 yoki P100, 16 GB VRAM.
+  - ~30 GPU-soat/hafta har hisob uchun.
+  - Sessiyalar ~9 soatgacha.
+
+DIZAYN SHIPLARI:
+  - 1-2 haftalar (1-8 kunlar): standart holda CPU-ONLY. Klassik pipeline,
+    BoW/TF-IDF, klassik ML, N-gramlar, kichik korpusda Word2Vec, kichik
+    RNN/LSTM demolar — hammasi CPU da sessiya vaqtida tugashi shart.
+  - 3-4 haftalar GPU kunlari: 16 GB ga sig'ishi shart. DistilBERT/BERT-base/
+    mBERT (<=180M parametr) to'liq fine-tuning ruxsat etilgan. Kattaroq
+    modellar (>=1B) faqat PEFT (LoRA/QLoRA + 4-bit) orqali.
+  - HECH QACHON A100/H100, multi-GPU yoki >16 GB taxmin qilinmaydi.
+  - RAG/agent kunlari: LLM hosted API bepul rejimi orqali chaqiriladi,
+    mahalliy emas.
+
+MUHANDISLIK QOIDALARI: har paket versiyasi mahkamlanadi; data <=500 MB/kun;
+har training tsikli >=2 daqiqada checkpoint; barcha seedlar o'rnatiladi;
+transformer kunlarida mixed precision; >5 daqiqa katak bo'linadi.
+
+
+================================================================================
+  7. DATASETLAR (korpus registri) VA LITSENZIYALAR
+================================================================================
+
+Katta data GIT GA KIRITILMAYDI — Kaggle Datasets / HF Hub da saqlanadi.
+Har bir korpus LICENSES.md da ro'yxatga olinishi shart.
+
+  Korpus              | Litsenziya holati      | Tavsif
+  --------------------|------------------------|---------------------------
+  uz_news_mini/full   | CONFIRMED (edu)        | kun.uz, gazeta.uz yangiliklari
+  cc_uz_100k_kv       | CONFIRMED              | Common Crawl Uzbek W2V (~240MB)
+  uz_ner_wikiann      | EDUCATIONAL-USE        | WikiANN uz (~200 jumlat, F1 past)
+  uz_en_opus100       | EDUCATIONAL-USE        | OPUS-100 uz-en (20k juft, demo)
+  uz_wiki_summ        | CONFIRMED (CC-BY-SA)   | Wikipedia uz xulosa juftlari
+  uz_sentiment_uzum   | CONFIRMED (MIT)        | Uzum Market sharhlari (352k qator)
+  uz_kb               | CONFIRMED (edu)        | Bilimlar bazasi (yangilik+lex.uz)
+
+RAD ETILGAN datasetlar (NOT USED):
+  - risqaliyevds/uzbek_ner: MIT, lekin noto'g'ri format (entity gazetteer,
+    IOB2 emas).
+  - ShakhzoDavronov/ner-prepared-uzbek: 19609 IOB2 misol, lekin litsenziya
+    yo'q -> blocker.
+  - FLORES-200 (uz): faqat ~1012 test jumlat -> training uchun juda kichik.
+
+MUHIM PEDAGOGIK QAROR: o'zbek NER va NMT uchun ochiq ma'lumotlar kamligi
+ATAYLAB ko'rsatiladi — WikiANN bilan F1 past (~40-60%) bo'lishi notebookda
+ochiq aytiladi. Bu o'zbek tili NLP resurslarining kamligini halol aks
+ettiradi.
+
+
+================================================================================
+  8. HOZIRGI HOLAT — NIMA TAYYOR, NIMA QOLDI
+================================================================================
+
+TAYYOR (ishlab chiqarilgan va QA dan o'tgan):
+
+  INFRATUZILMA (to'liq):
+    - Barcha boshqaruv hujjatlari (CLAUDE.md, README, CONTRIBUTING,
+      ONBOARDING, PROMPTS, LICENSES, .gitignore, PR shabloni).
+    - 4 ta majburiy skill fayli + ma'ruza shabloni.
+    - requirements.txt.
+
+  1-KUN (orientatsiya) — TO'LIQ, QA PASS:
+    - capstone/SPEC.md (loyiha shartnomasi).
+    - capstone/contracts.py (16 sinf, 64 metod imzosi).
+    - day1_orientation/d01_orientatsiya.ipynb (20 katak, OFFLINE_FALLBACK).
+    - day1_orientation/d01_kirish.tex (~16 slayd kirish).
+    - day1_orientation/HISOB_YARATISH.md.
+    - assessments/pre_course.{docx,xlsx} (14 savol diagnostik test).
+
+  L1 MA'RUZA — TO'LIQ, QA PASS (kompilyatsiya Overleaf ga kechiktirilgan):
+    - d01_nlp_asoslari.tex (~48 slayd, barcha arxetiplar, +7 qo'shimcha
+      slayd: lingvistik darajalar va vazifalar taksonomiyasi).
+    - PDF mavjud.
+
+  L2 MA'RUZA — TO'LIQ, QA PASS (PDF hali kutilmoqda):
+    - d02_klassik_tasnif.tex (~43 slayd; logistik regressiya, Naive Bayes,
+      metrikalar, etika). PDF Overleaf kompilyatsiyasidan keyin commit
+      qilinadi.
+
+  P1 AMALIYOT — TO'LIQ, QA PASS (GOLD STANDARD):
+    - d02_p1_preprocessing.ipynb (44 katak) + SOLUTIONS varianti.
+    - m01_text_preprocessor.py — YAGONA to'liq yozilgan kapstone modul.
+    - d02_checkpoints/uz_news_mini.txt offline data.
+    - Bu Day 2 jufti "GOLD STANDARD" — keyingi barcha kunlar shuni nusxa
+      qiladi.
+
+QOLGAN ISH (course_map.yaml da to'liq rejalashtirilgan, lekin hali ishlab
+chiqarilmagan):
+
+  - 3-16 kunlar: barcha ma'ruzalar (L3-L16) va amaliyotlar (P2-P16).
+  - 4 ta milestone briefi (w1-w4) + check skriptlari.
+  - 14 ta qolgan kapstone modul (m02-m15) + app.py.
+  - Yakuniy test (final_test.docx/xlsx, M4 da chiqariladi).
+  - Kapstone rubrikasi (rubric.docx/xlsx).
+  - Yakuniy audit (qa/final_audit.md).
+
+XULOSA: loyiha ~2 kun (orientatsiya + Day 2 jufti) ishlab chiqarilgan, ya'ni
+16 kundan taxminan 1.5-2 kun tayyor. Eng muhimi — butun INFRATUZILMA,
+YAGONA HAQIQAT MANBASI (course_map.yaml, 16 kun to'liq rejalashtirilgan) va
+GOLD STANDARD namuna tayyor. Qolgan kunlar shu naqsh bo'yicha ishlab
+chiqariladi.
+
+
+================================================================================
+  9. GIT TARIXI (24 commit) — RIVOJLANISH BOSQICHLARI
+================================================================================
+
+  1-bosqich (infratuzilma):
+    gitignore, README, requirements, CONTRIBUTING, PR shablon, governance
+    fayllar, skill fayllar, capstone spec/contracts, course_map.yaml.
+
+  2-bosqich (1-kun):
+    L1 ma'ruza, QA, orientatsiya materiallari, diagnostik test, NLP-tashkilot
+    bo'limi.
+
+  3-bosqich (2-kun):
+    L2 ma'ruza (klassik tasnif), P1 amaliyot + m01 TextPreprocessor.
+
+  4-bosqich (uslub va qo'lda tahrirlar):
+    O'zbekcha sentence-case + tabiiy gap qoidasi qabul qilindi (qo'lda L1
+    tahrirlaridan), termin kapitalizatsiyasi aniqlashtirildi, sentiment
+    yorliqlari (ijobiy/salbiy) qulflandi, hamkasb onboarding qo'llanmasi.
+
+  Eng so'nggi 5 commit (joriy feat/help_to_improve branch):
+    d44ce75 day02: P1 amaliyoti — d02_p1_preprocessing.ipynb qo'lda tahriri
+    4337a0d day01: orientatsiya — d01_kirish.tex + notebook + PDF tahriri
+    7c49b6a day01: ma'ruza — d01_nlp_asoslari.tex + PDF tahriri
+    1a7873d capstone: SPEC.md — "imzo" -> "shablon" qayta nomlash
+    89be8e9 day01: d01_kirish.tex — barcha sarlavhalarda sentence case
+
+So'nggi commitlarning hammasi "manual content revision" — ya'ni inson
+muallifi avtomatik ishlab chiqarilgan materialni qo'lda sayqallayotgan
+bosqich (uslub va o'zbekcha tabiiyligi yaxshilanmoqda).
+
+
+================================================================================
+  10. ASOSIY KUZATUVLAR VA E'TIBORGA OLISH KERAK BO'LGAN NUQTALAR
+================================================================================
+
+KUCHLI TOMONLAR:
+  + Juda yaxshi rejalashtirilgan: course_map.yaml 1105 qatorda 16 kunni
+    to'liq, har bir hand_example sonigacha ta'riflaydi.
+  + Qat'iy sifat intizomi: har artefakt uchun QA hisoboti, kuzatiluvchanlik
+    (ma'ruza soni = amaliyot asserti), terminologiya grep darvozasi.
+  + Pedagogik puxtalik: PRIMM, so'nuvchi tayanch, status-himoya, kapstone
+    integratsiyasi — zamonaviy o'qitish metodikasi.
+  + Halol o'zbek-spesifik yondashuv: agglutinatsiya, apostrof muammosi,
+    ma'lumot kamligi ochiq tan olinadi.
+  + Datasetlar litsenziyasi puxta hujjatlashtirilgan (LICENSES.md).
+
+E'TIBOR BERISH KERAK:
+  ! Loyihaning katta qismi (3-16 kunlar) hali ishlab chiqarilmagan — bu
+    kutilgan holat ("bir kunda bitta" intizomi).
+  ! PDF kompilyatsiya darvozasi Overleaf ga kechiktirilgan — mahalliy
+    tasdiqlanmagan (L2 PDF hali yo'q).
+  ! Notebooklarning to'liq Kaggle bajarilishi hali tasdiqlanmagan (faqat
+    compile/nbformat darvozalari mahalliy o'tgan).
+  ! HISOB_YARATISH.md faylida 1-qatorda ortiqcha "\#" belgisi bor (kichik
+    formatlash nuqsoni) va 104-qatorda "saqlanaan" -> "saqlangan" terish
+    xatosi bor.
+  ! Joriy branch feat/help_to_improve master bilan bir xil (origin bilan
+    sinxron, toza). Bu branch nomi CONTRIBUTING.md dagi "dayNN/..." naqshiga
+    mos kelmaydi (lekin bu infra/improvement branch).
+
+KEYINGI MANTIQIY QADAM (PROMPTS.md bo'yicha):
+  STAGE 3 — Week 1 ni yakunlash: Day 3 va Day 4 (ma'ruza + amaliyot +
+  yechimlar + checkpoint + QA), bir kunda bitta, har QA dan keyin
+  tasdiqlanadi. Keyin w1_milestone.md + w1_check.py.
+
+
+================================================================================
+  YAKUNIY BIR JUMLALI XULOSA
+================================================================================
+
+Bu — o'zbek tilidagi 4 haftalik professional NLP kursining barcha
+materiallarini (ma'ruza slaydlari, amaliyot daftarlari, kumulyativ kapstone
+loyiha "O'zbek Hujjat Yordamchisi", milestonelar va sifat hisobotlari) AI
+agent yordamida, qat'iy "bir kunda bitta" intizomi va avtomatik sifat
+darvozalari ostida ishlab chiqaradigan, hozircha infratuzilma + 1-kun +
+Day 2 gold-standard jufti tayyor bo'lgan, qolgan 14 kuni esa to'liq
+rejalashtirilgan o'quv-material ishlab chiqarish loyihasi.
+
+================================================================================
