@@ -305,7 +305,7 @@
       \vspace{4pt}
       \footnotesize
       \texttt{choy}, \texttt{kofe} ko'pincha bir xil so'zlar bilan
-      keladi: \textit{``issiq ___ ichdim''} $\Rightarrow$ vektorlari
+      keladi: \textit{``issiq \underline{\hspace{0.7cm}} ichdim''} $\Rightarrow$ vektorlari
       yaqin bo'lishi kerak.
     \end{column}
   \end{columns}
@@ -407,7 +407,7 @@
     \small
     \textbf{(a) \texttt{(avtomobil, mashina)}.}\\[3pt]
     Bu ikki so'z bir xil kontekstlarda uchraydi:
-    \textit{``yangi ___ sotib oldim''}, \textit{``___ ni haydadi''}.
+    \textit{``yangi \underline{\hspace{0.7cm}} sotib oldim''}, \textit{``\underline{\hspace{0.7cm}} ni haydadi''}.
     Kontekstlari o'xshash $\Rightarrow$ vektorlari yaqin.\\[3pt]
     \texttt{banan} esa butunlay boshqa kontekstda
     (\textit{``meva''}, \textit{``yedim''}) $\Rightarrow$ uzoq vektor.
@@ -727,6 +727,7 @@ cosine_similarity(
 \begin{frame}{Analogiyani qadamma-qadam yechamiz}
   \textbf{Savol:} \texttt{uzbekiston : toshkent :: rossiya : ?}
   (poytaxt munosabati)
+
   \vspace{4pt}
   \textbf{1-qadam.} Munosabat yo'nalishini topamiz:
   $$ \mathbf{b} - \mathbf{a} = E(\texttt{toshkent}) - E(\texttt{uzbekiston})
@@ -915,7 +916,7 @@ wv.most_similar(
 % [I4] QO'LDA MISOL: PCA INTUITSIYASI
 % ----------------------------------------------------------------
 \begin{frame}{Qo'lda misol: qaysi o'q ko'proq ma'lumot saqlaydi?}
-  \begin{tcolorbox}[defbox,title=Uchta nuqta (2D, markazlashtirilgan)]
+  \begin{tcolorbox}[defbox,title={Uchta nuqta (2D, markazlashtirilgan)}]
     \small
     $w_1=(2,\;0.1)$,\qquad $w_2=(-2,\;-0.1)$,\qquad $w_3=(0,\;0)$
   \end{tcolorbox}

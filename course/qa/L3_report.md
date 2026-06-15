@@ -23,7 +23,27 @@
 | Environment balance | **PASS** | columns 17/17, tcolorbox 39/39, tikzpicture 4/4, lstlisting 4/4, align* 3/3 |
 | Encoding hygiene (no U+2019 / Cyrillic / smart-quotes / BOM) | **PASS** | All apostrophes ASCII `'`; T1-safe; verified in lstlisting blocks |
 | Locked [I2] traceability value | **PASS** | `cos(a,b) = 2/3 ≈ 0.667` — matches course_map.yaml hand_example exactly |
-| pdflatex compile | **DEFERRED** | Overleaf (pdfLaTeX) — local TeX install not present (project policy) |
+| pdflatex compile ×2 | **PASS** | MiKTeX (local) — 0 `^!` errors, 0 `Overfull \hbox (>10pt)`, 54 pages output |
+| Visual PDF review (54 pages) | **PASS** | All pages rendered at 90 dpi and inspected; 4 defects found and fixed (see below) |
+
+---
+
+## Post-Compile Visual Review — Defects Found & Fixed
+
+The compiled PDF (54 rendered pages incl. `\pause` overlays) was rendered to PNG
+and every page inspected. Four defects were found and corrected; the deck now
+compiles cleanly (0 `^!`, 0 Overfull >10pt) and all four pages re-verified visually.
+
+| # | Frame | Defect | Root cause | Fix |
+|---|---|---|---|---|
+| 1 | [F1] | `"issiq ___ ichdim"` — "ichdim" rendered as a subscript, blank lost | bare `___` in text mode → LaTeX math subscript | `\underline{\hspace{0.7cm}}` blank |
+| 2 | [J1] | `"yangi ___ sotib oldim"`, `"___ ni haydadi"` — same subscript corruption | bare `___` in text mode | `\underline{\hspace{0.7cm}}` blanks |
+| 3 | [I4] | **Fatal compile error** — `tcb` unknown key `markazlashtirilgan)` | comma inside unbraced tcolorbox `title=...(2D, markazlashtirilgan)` parsed as key separator | wrap title in braces `title={...}` |
+| 4 | [H3] | "1-qadam." ran onto the "Savol:" line instead of a new line | `\vspace` without a paragraph break | inserted blank line (paragraph break) before `\vspace` |
+
+Note: defect #3 was latent — Overleaf's pgfkeys tolerated the stray key and still
+emitted a PDF, but local MiKTeX treated it as fatal (no PDF). Bracing the title is
+the correct, portable fix.
 
 ---
 
@@ -180,10 +200,11 @@ Traceability comment in .tex (line in [I2] / [Q]): `# Ma'ruza L3 [I2]-slayd`
 
 ---
 
-**Status: PASS (non-compile gates)** — terminology, archetypes, `\bunda{}` keys, fragile frames,
-environment balance, encoding hygiene, and locked [I2] traceability all clear.
-Compile gate DEFERRED to Overleaf (pdfLaTeX). Upload `course/lectures/d03_vektor_embedding.tex`
-as a single file; compile twice; confirm log is free of `^!` errors and `Overfull \hbox (>10pt)`.
+**Status: PASS (all gates incl. compile)** — terminology, archetypes, `\bunda{}` keys,
+fragile frames, environment balance, encoding hygiene, and locked [I2] traceability all clear.
+Compile gate now **PASS locally** (MiKTeX, pdflatex ×2): 0 `^!` errors, 0 `Overfull \hbox (>10pt)`,
+54 pages. All 54 rendered pages were visually inspected; 4 defects found and fixed (table above).
+Compiled `course/lectures/d03_vektor_embedding.pdf` committed alongside the source.
 
 **One judgment call awaiting human approval:** slide count (~40) exceeds the standard 22–28
 ceiling, following the L1/L2 4-subitem-lecture exception precedent (course_map.yaml has no
