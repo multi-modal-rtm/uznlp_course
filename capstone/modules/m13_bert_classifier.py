@@ -26,7 +26,7 @@ from sklearn.linear_model import LogisticRegression
 try:
     import transformers  # noqa: F401
     HAS_TRANSFORMERS = True
-except ImportError:
+except Exception:        # ImportError yoki torch DLL xatosi -> fallback (LogReg)
     HAS_TRANSFORMERS = False
 
 # Yo'l tanlovi: standart -- transformers bo'lsa o'sha. Mahalliy tekshirishda
